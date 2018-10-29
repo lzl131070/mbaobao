@@ -1,3 +1,8 @@
+import hashlib
+import random
+import time
+import uuid
+
 from django.http import HttpResponse,response,HttpRequest
 from django.shortcuts import render, render_to_response, redirect
 
@@ -6,10 +11,18 @@ from mbbapp.models import User
 
 
 def index(request):
-    username=request.COOKIES.get('username')
-    return render(request,'index.html',context={'username':username})
-
-
+    token=request.COOKIES.get('token')
+    users = User.objects.filter(token=token)
+    if users.exists():
+        user=users.first()
+        return render(request,'index.html',context={'username':user.username})
+    else:
+        return render(request,'index.html')
+def generate_token():
+    token=str(time.time())+str(random.random)
+    md5=hashlib.md5()
+    md5.update(token.encode('utf-8'))
+    return md5.hexdigest()
 def login(request):
     if request.method=='GET':
         return render(request, 'login.html')
@@ -21,9 +34,13 @@ def login(request):
             users=User.objects.filter(username=username).filter(password=password)
             if users.count():
                 user=users.first()
+                user.token=generate_token()
+                user.save()
+
                 response=redirect('mbb:index')
+                request.session['token']=user.token
                 print(1)
-                response.set_cookie('username',user.username)
+                response.set_cookie('token',user.token)
                 return response
             else:
                 num = 2
@@ -42,10 +59,12 @@ def register(request):
         user.username=request.POST.get('username')
         user.password=request.POST.get('password')
         try:
+            user.token=uuid.uuid5(uuid.uuid4(),'register')
             user.save()
-
+            request.session['username']=user.username
             response=redirect('mbb:index')
-            response.set_cookie('username',user.username)
+
+            response.set_cookie('token',user.token)
             return response
         except:
 
@@ -63,5 +82,5 @@ def detail(request):
     return render(request,'detail.html')
 def logout(request):
     response=redirect('mbb:index')
-    response.delete_cookie('username')
+    response.delete_cookie('token')
     return response
