@@ -21,13 +21,16 @@ def login(request):
             if users.count():
                 user=users.first()
                 response=redirect('mbb:index')
-                response.set_cookie('username',username)
+                print(1)
+                response.set_cookie('username',user.username)
                 return response
             else:
                 num = 2
+                print(2)
                 return render(request, 'login.html', context={'num': num})
         else:
             num=1
+            print(3)
             return render(request,'login.html',context={'num':num})
 
 def register(request):
