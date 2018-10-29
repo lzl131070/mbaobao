@@ -6,7 +6,8 @@ from mbbapp.models import User
 
 
 def index(request):
-    return render(request,'index.html')
+    username=request.COOKIES.get('username')
+    return render(request,'index.html',context={'username':username})
 
 
 def login(request):
