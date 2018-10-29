@@ -1,8 +1,10 @@
+
 $(function(){
 
-	$.get("http://127.0.0.1/mbaobao/static/php/index-lunbo.php", function(data){
+	$.get("/static/json/floor-lunbo.json", function(data){
 //		console.log(data); 		
-		var arr = JSON.parse(data);		
+// 		var arr = JSON.parse(data);
+		var arr = data
 		for (var i=0; i<arr.length; i++) {
 			var obj = arr[i];		
 			$("<li><img src="+ obj.img +" ></li>").appendTo("#banner-pc");
@@ -20,15 +22,15 @@ $(function(){
 		var _li1 = $("#banner-pc li");
 		var _aA = $("#slides a");		
 		//初始化显示第一张图
-		_li1.eq(0).show().siblings().hide();		
+		_li1.eq(0).show().siblings().hide();
 		//图片总数量
-		var size = $("#banner-pc li").size(); //4		
+		size = $("#banner-pc li").size(); //4
 		//自动轮播
-		var i = 0; //记录图片下标
-		var timer = setInterval(function(){
+		i = 0; //记录图片下标
+		timer = setInterval(function(){
 			i++;
 			move(); 
-		}, 5000);		
+		}, 1000);
 		//移动的函数
 		function move(){			
 			//如果i超出了图片总数量
@@ -36,16 +38,16 @@ $(function(){
 				i = 0; //即将移动到2张图
 			}			
 			//透明度切换到第i张图
-			_li1.eq(i).stop().fadeIn().siblings().stop().fadeOut();			
+			_li1.eq(i).stop().fadeIn().siblings().stop().fadeOut();
 			//改变ul2的按钮状态
-			_aA.eq(i).removeClass().addClass("active").siblings().removeClass("active"); 			
+			_aA.eq(i).removeClass().addClass("active").siblings().removeClass("active");
 		}
 		_aA.mouseenter(function(){
 			i = $(this).index();
 			move();
 		})				
 	}
-	
+	// lunbo();
 	//floor1
 	//先获取轮播图的数据	
 	$.get("http://127.0.0.1/mbaobao/static/php/floor-lunbo.php", function(data){
@@ -66,9 +68,10 @@ $(function(){
 	
 	//floor2
 	//先获取轮播图的数据	
-	$.get("http://127.0.0.1/mbaobao/static/php/floor2-lunbo.php", function(data){
+	$.get("/static/json/floor2-lunbo.json", function(data){
 		//console.log(data); 		
-		var arr = JSON.parse(data);		
+		// var arr = JSON.parse(data);
+        var arr = data
 		for (var i=0; i<arr.length; i++) {
 			var obj = arr[i];			
 			$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport2");
@@ -83,9 +86,10 @@ $(function(){
 	
 	//floor3
 	//先获取轮播图的数据	
-	$.get("http://127.0.0.1/mbaobao/static/php/floor3-lunbo.php", function(data){
+	$.get("/static/php/floor3-lunbo.php", function(data){
 		//console.log(data); 		
-		var arr = JSON.parse(data);		
+		// var arr = JSON.parse(data);
+        var arr = data
 		for (var i=0; i<arr.length; i++) {
 			var obj = arr[i];			
 			$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport3");

@@ -84,3 +84,4 @@ def logout(request):
     response=redirect('mbb:index')
     response.delete_cookie('token')
     return response
+
