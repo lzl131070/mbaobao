@@ -72,63 +72,63 @@ $(function(){
 	
 	var arr = [];
 	//获取json中的数据
-	$.get("static/json/index-detail.json", function(data){
-		var arr = data;		
-		for (var i=0; i<arr.length; i++) {
-			var obj = arr[i]; //每个商品数据
-			
-			//找到id相同的商品后，就可以使用obj了
-			if (obj.id == pid) {
-				loadUI(obj);
-			}
-		}
-		
-	})
+	// $.get("static/json/index-detail.json", function(data){
+	// 	var arr = data;
+	// 	for (var i=0; i<arr.length; i++) {
+	// 		var obj = arr[i]; //每个商品数据
+	//
+	// 		//找到id相同的商品后，就可以使用obj了
+	// 		if (obj.id == pid) {
+	// 			loadUI(obj);
+	// 		}
+	// 	}
+	//
+	// })
 	
-	function loadUI(obj){
-		$(".goods-spic-url").attr("src", obj.picNum);
-		$(".cloud-zoom-big").attr("src",obj.picNum);
-		$(".pic1>img").attr("src",obj.pic1);
-		$(".pic2>img").attr("src",obj.pic2);
-		$(".pic3>img").attr("src",obj.pic3);
-		$(".pic4>img").attr("src",obj.pic4);
-		$(".pic5>img").attr("src",obj.pic5);
-		$(".pic6>img").attr("src",obj.pic6);
-		$(".pic7>img").attr("src",obj.pic1);
-		$(".goods-name").html( obj.name );
-		$(".yuan").html(obj.unit);
-		$(".price-num").html(obj.price);
-		$(".goods-status").html( "<s>麦包价：<b class='yuan'>"+obj.unit +"</b>"+obj.mbbPrice+"</s>" );
-		$(".mini-price").html(obj.unit+"<em>"+obj.price+"</em>");
-		$(".crumb-location").html("当前位置：<a href='index.html' target='_black'>麦包包</a> &gt; "+obj.name);
-		
-		//点击商品
-		$(".goods-btn-buy,.mini-btn-buy,.goods-btn-collect").click(function(){
-			
-			//将当前点击的商品数据加入购物车（cookie）
-			var arr2 = $.cookie("cart") ? JSON.parse($.cookie("cart")) : [];
-			
-			//判断原来的购物车中是否有相同商品
-			var isExist = false;
-			for (var i=0; i<arr2.length; i++) {
-				if (arr2[i].id == obj.id) {
-					arr2[i].num++;
-					isExist = true;
-					break;
-				}
-			}
-			if (isExist ==  false) {
-				obj.num = 1;
-				obj.checked = true; //是否选中， 默认选中 
-				arr2.push(obj);
-			}
-			
-			//将arr2添加到cookie中
-			$.cookie("cart", JSON.stringify(arr2), {expires:30, path:"/"});			
-			
-		})
-	}
-	
+	// function loadUI(obj){
+	// 	$(".goods-spic-url").attr("src", obj.picNum);
+	// 	$(".cloud-zoom-big").attr("src",obj.picNum);
+	// 	$(".pic1>img").attr("src",obj.pic1);
+	// 	$(".pic2>img").attr("src",obj.pic2);
+	// 	$(".pic3>img").attr("src",obj.pic3);
+	// 	$(".pic4>img").attr("src",obj.pic4);
+	// 	$(".pic5>img").attr("src",obj.pic5);
+	// 	$(".pic6>img").attr("src",obj.pic6);
+	// 	$(".pic7>img").attr("src",obj.pic1);
+	// 	$(".goods-name").html( obj.name );
+	// 	$(".yuan").html(obj.unit);
+	// 	$(".price-num").html(obj.price);
+	// 	$(".goods-status").html( "<s>麦包价：<b class='yuan'>"+obj.unit +"</b>"+obj.mbbPrice+"</s>" );
+	// 	$(".mini-price").html(obj.unit+"<em>"+obj.price+"</em>");
+	// 	$(".crumb-location").html("当前位置：<a href='index.html' target='_black'>麦包包</a> &gt; "+obj.name);
+	//
+	// 	//点击商品
+	// 	$(".goods-btn-buy,.mini-btn-buy,.goods-btn-collect").click(function(){
+	//
+	// 		//将当前点击的商品数据加入购物车（cookie）
+	// 		var arr2 = $.cookie("cart") ? JSON.parse($.cookie("cart")) : [];
+	//
+	// 		//判断原来的购物车中是否有相同商品
+	// 		var isExist = false;
+	// 		for (var i=0; i<arr2.length; i++) {
+	// 			if (arr2[i].id == obj.id) {
+	// 				arr2[i].num++;
+	// 				isExist = true;
+	// 				break;
+	// 			}
+	// 		}
+	// 		if (isExist ==  false) {
+	// 			obj.num = 1;
+	// 			obj.checked = true; //是否选中， 默认选中
+	// 			arr2.push(obj);
+	// 		}
+	//
+	// 		//将arr2添加到cookie中
+	// 		$.cookie("cart", JSON.stringify(arr2), {expires:30, path:"/"});
+	//
+	// 	})
+	// }
+	//
 	
 	
 	//查找参数对应的值

@@ -50,92 +50,92 @@ $(function(){
 	lunbo();
 	//floor1
 	//先获取轮播图的数据	
-	$.get("http://127.0.0.1/mbaobao/static/php/floor-lunbo.php", function(data){
-//		console.log(data); 		
-		var arr = JSON.parse(data);
-		for (var i=0; i<arr.length; i++) {
-			var obj = arr[i];	
-//			console.log(obj.img);
-			$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport");
-			var li = $("<li>"+ obj.name +"</li>").appendTo("#list1");			
-			if (i==0) {
-				li.addClass("active");
-			}
-		}	
-		//轮播
-			lunbo1("#bx-viewport","#bx-viewport li","#list1","#list1 li");
-	})
-	
+// 	$.get("http://127.0.0.1/mbaobao/static/php/floor-lunbo.php", function(data){
+// //		console.log(data);
+// 		var arr = JSON.parse(data);
+// 		for (var i=0; i<arr.length; i++) {
+// 			var obj = arr[i];
+// //			console.log(obj.img);
+// 			$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport");
+// 			var li = $("<li>"+ obj.name +"</li>").appendTo("#list1");
+// 			if (i==0) {
+// 				li.addClass("active");
+// 			}
+// 		}
+// 		//轮播
+// 			lunbo1("#bx-viewport","#bx-viewport li","#list1","#list1 li");
+// 	})
+	lunbo1("#bx-viewport","#bx-viewport li","#list1","#list1 li");
 	//floor2
 	//先获取轮播图的数据	
-	$.get("/static/json/floor2-lunbo.json", function(data){
-		//console.log(data); 		
-		// var arr = JSON.parse(data);
-        var arr = data
-		for (var i=0; i<arr.length; i++) {
-			var obj = arr[i];			
-			$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport2");
-			var li = $("<li>"+ obj.name +"</li>").appendTo("#list2");			
-			if (i==0) {
-				li.addClass("active");
-			}
-		}		
-		//轮播
-			lunbo1("#bx-viewport2","#bx-viewport2 li","#list2","#list2 li");
-	})
-	
+	// $.get("/static/json/floor2-lunbo.json", function(data){
+	// 	//console.log(data);
+	// 	// var arr = JSON.parse(data);
+    //     var arr = data
+	// 	for (var i=0; i<arr.length; i++) {
+	// 		var obj = arr[i];
+	// 		$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport2");
+	// 		var li = $("<li>"+ obj.name +"</li>").appendTo("#list2");
+	// 		if (i==0) {
+	// 			li.addClass("active");
+	// 		}
+	// 	}
+	// 	//轮播
+	// 		lunbo1("#bx-viewport2","#bx-viewport2 li","#list2","#list2 li");
+	// })
+	lunbo1("#bx-viewport2","#bx-viewport2 li","#list2","#list2 li");
 	//floor3
 	//先获取轮播图的数据	
-	$.get("/static/php/floor3-lunbo.php", function(data){
-		//console.log(data); 		
-		// var arr = JSON.parse(data);
-        var arr = data
-		for (var i=0; i<arr.length; i++) {
-			var obj = arr[i];			
-			$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport3");
-			var li = $("<li>"+ obj.name +"</li>").appendTo("#list3");			
-			if (i==0) {
-				li.addClass("active");
-			}
-		}		
-		//轮播
-			lunbo1("#bx-viewport3","#bx-viewport3 li","#list3","#list3 li");
-	})
-	
+	// $.get("/static/php/floor3-lunbo.php", function(data){
+	// 	//console.log(data);
+	// 	// var arr = JSON.parse(data);
+    //     var arr = data
+	// 	for (var i=0; i<arr.length; i++) {
+	// 		var obj = arr[i];
+	// 		$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport3");
+	// 		var li = $("<li>"+ obj.name +"</li>").appendTo("#list3");
+	// 		if (i==0) {
+	// 			li.addClass("active");
+	// 		}
+	// 	}
+	// 	//轮播
+	// 		lunbo1("#bx-viewport3","#bx-viewport3 li","#list3","#list3 li");
+	// })
+	lunbo1("#bx-viewport3","#bx-viewport3 li","#list3","#list3 li");
 	//floor4
 	//先获取轮播图的数据	
-	$.get("http://127.0.0.1/mbaobao/static/php/floor4-lunbo.php", function(data){
-		//console.log(data); 		
-		var arr = JSON.parse(data);		
-		for (var i=0; i<arr.length; i++) {
-			var obj = arr[i];			
-			$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport4");
-			var li = $("<li>"+ obj.name +"</li>").appendTo("#list4");			
-			if (i==0) {
-				li.addClass("active");
-			}
-		}		
-		//轮播
-			lunbo1("#bx-viewport4","#bx-viewport4 li","#list4","#list4 li");
-	})
-	
+	// $.get("http://127.0.0.1/mbaobao/static/php/floor4-lunbo.php", function(data){
+	// 	//console.log(data);
+	// 	var arr = JSON.parse(data);
+	// 	for (var i=0; i<arr.length; i++) {
+	// 		var obj = arr[i];
+	// 		$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport4");
+	// 		var li = $("<li>"+ obj.name +"</li>").appendTo("#list4");
+	// 		if (i==0) {
+	// 			li.addClass("active");
+	// 		}
+	// 	}
+	// 	//轮播
+	// 		lunbo1("#bx-viewport4","#bx-viewport4 li","#list4","#list4 li");
+	// })
+	lunbo1("#bx-viewport4","#bx-viewport4 li","#list4","#list4 li");
 	//floor5
 	//先获取轮播图的数据	
-	$.get("http://127.0.0.1/mbaobao/static/php/floor5-lunbo.php", function(data){
-		//console.log(data); 		
-		var arr = JSON.parse(data);		
-		for (var i=0; i<arr.length; i++) {
-			var obj = arr[i];			
-			$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport5");
-			var li = $("<li>"+ obj.name +"</li>").appendTo("#list5");			
-			if (i==0) {
-				li.addClass("active");
-			}
-		}		
-		//轮播
-			lunbo1("#bx-viewport5","#bx-viewport5 li","#list5","#list5 li");
-	})
-	
+	// $.get("http://127.0.0.1/mbaobao/static/php/floor5-lunbo.php", function(data){
+	// 	//console.log(data);
+	// 	var arr = JSON.parse(data);
+	// 	for (var i=0; i<arr.length; i++) {
+	// 		var obj = arr[i];
+	// 		$("<li><a href='javascript:void(0);'><img src="+ obj.img +" ><a></li>").appendTo("#bx-viewport5");
+	// 		var li = $("<li>"+ obj.name +"</li>").appendTo("#list5");
+	// 		if (i==0) {
+	// 			li.addClass("active");
+	// 		}
+	// 	}
+	// 	//轮播
+	// 		lunbo1("#bx-viewport5","#bx-viewport5 li","#list5","#list5 li");
+	// })
+	lunbo1("#bx-viewport5","#bx-viewport5 li","#list5","#list5 li");
 	//jq轮播图
 	function lunbo1(id,idx,id1,id1x){		
 		var list1 = $(id);

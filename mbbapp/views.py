@@ -7,20 +7,21 @@ from django.http import HttpResponse,response,HttpRequest
 from django.shortcuts import render, render_to_response, redirect
 
 # Create your views here.
-from mbbapp.models import User, Img
+from mbbapp.models import User, Img, Detail
 
 
 def index(request):
     token=request.COOKIES.get('token')
     users = User.objects.filter(token=token)
     data=Img.objects.all()
-    response=redirect('mbb:detail')
+
+    detail=Detail.objects.all()
 
     if users.exists():
         user=users.first()
-        return render(request,'index.html',context={'username':user.username,'data':data})
+        return render(request,'index.html',context={'username':user.username,'data':data,'detail':detail})
     else:
-        return render(request,'index.html',context={'data':data})
+        return render(request,'index.html',context={'data':data,'detail':detail})
 def generate_token():
     token=str(time.time())+str(random.random)
     md5=hashlib.md5()
@@ -82,9 +83,10 @@ def list(request):
     return render(request,'list.html')
 
 
-def detail(request):
+def detail(request,num):
+    good=Detail.objects.all()[int(num)-1]
 
-    return render(request,'detail.html')
+    return render(request,'detail.html',context={'good':good})
 def logout(request):
     response=redirect('mbb:index')
     response.delete_cookie('token')

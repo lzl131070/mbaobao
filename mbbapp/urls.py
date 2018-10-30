@@ -9,6 +9,6 @@ urlpatterns = [
     url('^register/$', views.register, name='register'),
     url(r'^cart/$',views.cart,name='cart'),
     url(r'^list/$',views.list,name='list'),
-    url(r'^detail/$',views.detail,name='detail'),
-    url(r'^logout$',views.logout,name='logout')
+    url(r'^detail/(\d+)/$',views.detail,name='detail'),
+    url(r'^logout$',views.logout,name='logout'),
 ]

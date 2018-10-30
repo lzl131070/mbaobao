@@ -351,10 +351,10 @@
 <div class="banner">
 	<ul class="banner-pc" id="banner-pc">
         {% for i in data %}
-                {% if forloop.counter <= 5 %}
-                        <li><a href="#"><img src={{ i.img }}/></a></li>
+            {% if 26 <= forloop.counter %}
+                <li><a href="#"><img src={{ i.img }}/></a></li>
             {% endif %}
-                    {% endfor %}
+        {% endfor %}
 {#		<li><a href="javascript:void(0);"><img src="static/img/index/banner1.jpg"/></a></li>#}
 {#		<li><a href="javascript:void(0);"><img src="static/img/index/banner2.jpg"/></a></li>#}
 {#		<li><a href="javascript:void(0);"><img src="static/img/index/banner3.jpg"/></a></li>#}
@@ -391,93 +391,113 @@
 			<div class="checkin-brand"><a href="javascript:void(0);"><img src="../static/img/index/1_032400.jpg" width="100%" height="100%"/></a></div>
 			<div class="bx-wrapper">
 				<ul class="bx-viewport" id="bx-viewport">
-					<li><a href="javascript:void(0);"><img src="static/img/index/banner06.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/banner07.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/banner08.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/banner09.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/banner10.jpg"/></a></li>
+                     {% for i in data %}
+                {% if forloop.counter <= 5 %}
+                        <li><a href="#"><img src={{ i.img }}/></a></li>
+            {% endif %}
+                    {% endfor %}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/banner06.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/banner07.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/banner08.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/banner09.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/banner10.jpg"/></a></li>#}
 				</ul>
 				<ul class="list2" id="list1">
-					<li class="active">双面佳人</li>
-					<li>趣味emoji</li>
-					<li>洒脱旅行</li>
-					<li>少女环游记</li>
-					<li>幸运许愿星</li>
+                      {% for i in data %}
+                {% if forloop.counter <= 5 %}
+                        <li>{{ i.name }}</li>
+            {% endif %}
+                    {% endfor %}
+{#					<li class="active">双面佳人</li>#}
+{#					<li>趣味emoji</li>#}
+{#					<li>洒脱旅行</li>#}
+{#					<li>少女环游记</li>#}
+{#					<li>幸运许愿星</li>#}
 				</ul>
 			</div>
 		</div>
 		<div class="mod-pro-list">
 			<ul>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>
+                 {% for good in detail %}
+
+                <li>
+					<a href={% url 'mbb:detail' forloop.counter %} class="pic"><img src={{ good.heading }} title={{ good.name }}/></a>
 					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
+						<span><a href="javascript:void(0);" title={{ good.name }}>{{ good.name }}</a></span>
+						<span class="price">{{ good.unit }}{{ good.price }}<s>{{ good.unit }}{{ good.mbbprice }}</s></span>
 					</div>
 				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥828</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
+                {% endfor %}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥828</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
 			</ul>
 		</div>
 	</div>
@@ -490,6 +510,13 @@
 			<div class="checkin-brand"><a href="javascript:void(0);"><img src="../static/img/index/2z.jpg" width="100%" height="100%"/></a></div>
 			<div class="bx-wrapper">
 				<ul class="bx-viewport" id="bx-viewport2">
+                      {% for i in data %}
+                {% if forloop.counter > 5 %}
+                    {% if forloop.counter < 11 %}
+                        <li><a href="#"><img src={{ i.img }}/></a></li>
+                        {% endif %}
+            {% endif %}
+                    {% endfor %}
 
 {#					<li><a href="javascript:void(0);"><img src="static/img/index/1-1704001901.jpg"/></a></li>#}
 {#					<li><a href="javascript:void(0);"><img src="static/img/index/1-9132562101.jpg"/></a></li>#}
@@ -498,6 +525,13 @@
 {#					<li><a href="javascript:void(0);"><img src="static/img/index/1-1706000902.jpg"/></a></li>#}
 				</ul>
 				<ul class="list2" id="list2">
+                          {% for i in data %}
+                {% if forloop.counter > 5 %}
+                    {% if forloop.counter < 11 %}
+                        <li>{{ i.name }}</li>
+                        {% endif %}
+            {% endif %}
+                    {% endfor %}
 {#					<li class="active">轻盈好时髦</li>#}
 {#					<li>潮萌机器人</li>#}
 {#					<li>摩登鳄鱼纹</li>#}
@@ -508,76 +542,86 @@
 		</div>
 		<div class="mod-pro-list">
 			<ul>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>
+                 {% for good in detail %}
+
+                <li>
+					<a href={% url 'mbb:detail' forloop.counter %} class="pic"><img src={{ good.heading }} title={{ good.name }}/></a>
 					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
+						<span><a href="javascript:void(0);" title={{ good.name }}>{{ good.name }}</a></span>
+						<span class="price">{{ good.unit }}{{ good.price }}<s>{{ good.unit }}{{ good.mbbprice }}</s></span>
 					</div>
 				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥828</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
+                {% endfor %}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥828</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
 			</ul>
 		</div>
 	</div>
@@ -590,93 +634,117 @@
 			<div class="checkin-brand"><a href="javascript:void(0);"><img src="../static/img/index/3z.jpg" width="100%" height="100%"/></a></div>
 			<div class="bx-wrapper">
 				<ul class="bx-viewport" id="bx-viewport3">
-				<li><a href="javascript:void(0);"><img src="static/img/index/2-1511011402.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/2-1704002101.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/9132624901.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/9132645501.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/9132657003.jpg"/></a></li>
+                     {% for i in data %}
+                {% if forloop.counter > 10 %}
+                    {% if forloop.counter < 16 %}
+                        <li><a href="#"><img src={{ i.img }}/></a></li>
+                        {% endif %}
+            {% endif %}
+                    {% endfor %}
+{#				<li><a href="javascript:void(0);"><img src="static/img/index/2-1511011402.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/2-1704002101.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/9132624901.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/9132645501.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/9132657003.jpg"/></a></li>#}
 				</ul>
 				<ul class="list2" id="list3">
-					<li class="active">温柔优雅</li>
-					<li>温雅小女人</li>
-					<li>精致气质</li>
-					<li>线条美学</li>
-					<li>皮艺风尚</li>
+{#					<li class="active">温柔优雅</li>#}
+{#					<li>温雅小女人</li>#}
+{#					<li>精致气质</li>#}
+{#					<li>线条美学</li>#}
+{#					<li>皮艺风尚</li>#}
+                     {% for i in data %}
+                {% if forloop.counter > 10 %}
+                    {% if forloop.counter < 16 %}
+                        <li>{{ i.name }}</li>
+                        {% endif %}
+            {% endif %}
+                    {% endfor %}
 				</ul>
 			</div>
 		</div>
 		<div class="mod-pro-list">
 			<ul>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>
+                 {% for good in detail %}
+
+                <li>
+					<a href={% url 'mbb:detail' forloop.counter %} class="pic"><img src={{ good.heading }} title={{ good.name }}/></a>
 					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
+						<span><a href="javascript:void(0);" title={{ good.name }}>{{ good.name }}</a></span>
+						<span class="price">{{ good.unit }}{{ good.price }}<s>{{ good.unit }}{{ good.mbbprice }}</s></span>
 					</div>
 				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥828</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
+                {% endfor %}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥828</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
 			</ul>
 		</div>
 	</div>
@@ -689,93 +757,117 @@
 			<div class="checkin-brand"><a href="javascript:void(0);"><img src="../static/img/index/4z.jpg" width="100%" height="100%"/></a></div>
 			<div class="bx-wrapper">
 				<ul class="bx-viewport" id="bx-viewport4">
-					<li><a href="javascript:void(0);"><img src="static/img/index/3-1411000102.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/3-1611008401.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/952-440-1(1).jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/3-1604009101.jpg"/></a></li>
-					<li><a href="javascript:void(0);"><img src="static/img/index/3-1612004702.jpg"/></a></li>
+                     {% for i in data %}
+                {% if forloop.counter > 15 %}
+                    {% if forloop.counter < 21 %}
+                        <li><a href="#"><img src={{ i.img }}/></a></li>
+                        {% endif %}
+            {% endif %}
+                    {% endfor %}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/3-1411000102.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/3-1611008401.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/952-440-1(1).jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/3-1604009101.jpg"/></a></li>#}
+{#					<li><a href="javascript:void(0);"><img src="static/img/index/3-1612004702.jpg"/></a></li>#}
 				</ul>
 				<ul class="list2" id="list4">
-					<li class="active">天生行动派</li>
-					<li>硬朗精英</li>
-					<li>魅力法则</li>
-					<li>帅气轻旅</li>
-					<li>拒绝中庸</li>
+                     {% for i in data %}
+                {% if forloop.counter > 20 %}
+                    {% if forloop.counter < 26 %}
+                        <li>{{ i.name }}</li>
+                        {% endif %}
+            {% endif %}
+                    {% endfor %}
+{#					<li class="active">天生行动派</li>#}
+{#					<li>硬朗精英</li>#}
+{#					<li>魅力法则</li>#}
+{#					<li>帅气轻旅</li>#}
+{#					<li>拒绝中庸</li>#}
 				</ul>
 			</div>
 		</div>
 		<div class="mod-pro-list">
 			<ul>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>
+                {% for good in detail %}
+
+                <li>
+					<a href={% url 'mbb:detail' forloop.counter %} class="pic"><img src={{ good.heading }} title={{ good.name }}/></a>
 					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
+						<span><a href="javascript:void(0);" title={{ good.name }}>{{ good.name }}</a></span>
+						<span class="price">{{ good.unit }}{{ good.price }}<s>{{ good.unit }}{{ good.mbbprice }}</s></span>
 					</div>
 				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥828</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
+                {% endfor %}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="{% url 'mbb:detail' %}" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="{% url 'mbb:detail' %}" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥828</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
 			</ul>
 		</div>
 	</div>
@@ -805,76 +897,76 @@
 		</div>
 		<div class="mod-pro-list">
 			<ul>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥388</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>
-						<span class="price">￥219<s>￥468</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>
-						<span class="price">￥189<s>￥368</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>
-						<span class="price">￥199<s>￥828</s></span>
-					</div>
-				</li>
-				<li>
-					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>
-					<div class="info">
-						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>
-						<span class="price">￥169<s>￥328</s></span>
-					</div>
-				</li>
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic49.jpg" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣椰树系列 手提单肩斜挎包">[mbaobao]刺绣椰树系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic39.jpg" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 单肩斜挎包">[mbaobao]撞色蝴蝶结系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic32.jpg" title="[mbaobao]刺绣花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]刺绣花朵系列 单肩斜挎包">[mbaobao]刺绣花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic36.jpg" title="[mbaobao]闪电猫系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]闪电猫系列 单肩斜挎包">[mbaobao]闪电猫系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥388</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic41.jpg" title="[mbaobao]双面花扣系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]双面花扣系列 手提单肩斜挎包">[mbaobao]双面花扣系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic46.jpg" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]潇洒小姐系列双肩单肩多用包(小款）">[mbaobao]潇洒小姐系列双肩单肩多用包(小款）</a></span>#}
+{#						<span class="price">￥219<s>￥468</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic28.jpg" title="[mbaobao]复古方包系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]复古方包系列 单肩斜挎包">[mbaobao]复古方包系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥189<s>￥368</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic26.jpg" title="[mbaobao]金属花朵系列 单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]金属花朵系列 单肩斜挎包">[mbaobao]金属花朵系列 单肩斜挎包</a></span>#}
+{#						<span class="price">￥199<s>￥828</s></span>#}
+{#					</div>#}
+{#				</li>#}
+{#				<li>#}
+{#					<a href="javascript:void(0);" class="pic"><img src="static/img/index/pic42.jpg" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包"/></a>#}
+{#					<div class="info">#}
+{#						<span><a href="javascript:void(0);" title="[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包">[mbaobao]撞色蝴蝶结系列 手提单肩斜挎包</a></span>#}
+{#						<span class="price">￥169<s>￥328</s></span>#}
+{#					</div>#}
+{#				</li>#}
 			</ul>
 		</div>
 	</div>
