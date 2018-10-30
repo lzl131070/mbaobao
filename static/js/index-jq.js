@@ -1,21 +1,21 @@
 
 $(function(){
 
-	$.get("/static/json/floor-lunbo.json", function(data){
-//		console.log(data); 		
-// 		var arr = JSON.parse(data);
-		var arr = data
-		for (var i=0; i<arr.length; i++) {
-			var obj = arr[i];		
-			$("<li><img src="+ obj.img +" ></li>").appendTo("#banner-pc");
-			var li = $("<a></a>").appendTo("#slides");			
-			if (i==0) {
-				li.addClass("active");
-			}
-		}		
-		//轮播
-		lunbo();
-	})
+// 	$.get("/static/json/floor-lunbo.json", function(data){
+// //		console.log(data);
+// // 		var arr = JSON.parse(data);
+// 		var arr = data
+// 		for (var i=0; i<arr.length; i++) {
+// 			var obj = arr[i];
+// 			$("<li><img src="+ obj.img +" ></li>").appendTo("#banner-pc");
+// 			var li = $("<a></a>").appendTo("#slides");
+// 			if (i==0) {
+// 				li.addClass("active");
+// 			}
+// 		}
+// 		//轮播
+// 	lunbo();
+	// })
 	function lunbo(){
 		var _bannerPc = $("#banner-pc");
 		var _slides = $("#slides");
@@ -47,7 +47,7 @@ $(function(){
 			move();
 		})				
 	}
-	// lunbo();
+	lunbo();
 	//floor1
 	//先获取轮播图的数据	
 	$.get("http://127.0.0.1/mbaobao/static/php/floor-lunbo.php", function(data){
