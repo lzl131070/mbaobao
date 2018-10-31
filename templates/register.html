@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +7,10 @@
 <link rel="stylesheet" type="text/css" href="../static/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="../static/css/register.css"/>
 <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
-<script type="text/javascript" src="../static/js/jquery-1.12.3.js"></script>
-<script type="text/javascript" src="../static/js/public-jq.js"></script>
-<script type="text/javascript" src="../static/js/register-jq.js"></script>
-<script type="text/javascript" src="../static/js/jquery.idcode.js"></script>
+<script type="text/javascript" src="/static/js/jquery-1.12.3.js"></script>
+<script type="text/javascript" src="/static/js/public-jq.js"></script>
+<script type="text/javascript" src="/static/js/register-jq.js"></script>
+<script type="text/javascript" src="/static/js/jquery.idcode.js"></script>
 </head>
 <body>
 <div class="top">
@@ -58,7 +59,7 @@
 </div>
 <div class="header">
 	<div class="header-warp">
-		<div class="logo"><a href="{% url 'mbb:index' %}"><img src="../static/img/index/logo.png" /></a></div>
+		<div class="logo"><a href="{% url 'mbb:index' %}"><img src="/static/img/index/logo.png" /></a></div>
 		<div class="search">
 			<div class="search-l">
 				<input type="text" placeholder="搜索‘双肩包’试试~" class="txt"/><input type="button" value="搜索" class="btn"/>
@@ -71,9 +72,9 @@
 				</ul>
 			</div>
 			<div class="search-r">
-				<a href="javascript:void(0);"><img src="../static/img/index/fuw_03.jpg"/></a>
-				<a href="javascript:void(0);"><img src="../static/img/index/fuw_041.jpg"/></a>
-				<a href="javascript:void(0);"><img src="../static/img/index/fuw_05.jpg"/></a>
+				<a href="javascript:void(0);"><img src="/static/img/index/fuw_03.jpg"/></a>
+				<a href="javascript:void(0);"><img src="/static/img/index/fuw_041.jpg"/></a>
+				<a href="javascript:void(0);"><img src="/static/img/index/fuw_05.jpg"/></a>
 			</div>
 		</div>
 	</div>
@@ -100,11 +101,11 @@
 					<div class="bag" id="bag">
 						<h5><span>品牌</span><a href="javascript:void(0);">更多女包品牌>></a></h5>
 						<div class="pic">
-							<a href="javascript:void(0);"><img src="../static/img/index/mbaobao.jpg"/>mbaobao</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/mplus.jpg"/>M plus</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/lm.jpg"/>浪美</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/af.jpg"/>阿尔法</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/Clous-Krause.jpg"/>Clous-Krause</a>
+							<a href="javascript:void(0);"><img src="/static/img/index/mbaobao.jpg"/>mbaobao</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/mplus.jpg"/>M plus</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/lm.jpg"/>浪美</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/af.jpg"/>阿尔法</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/Clous-Krause.jpg"/>Clous-Krause</a>
 						</div>
 						<div class="detail">
 							<dl>
@@ -129,7 +130,7 @@
 									<a href="javascript:void(0);">600-999</a>
 									<a href="javascript:void(0);">1000以上</a>
 								</dd>
-							</dl>		
+							</dl>
 							<dl>
 								<dt><span>按主材质：</span></dt>
 								<dd>
@@ -176,14 +177,14 @@
 							<a href="javascript:void(0);">手提包</a>
 							<a href="javascript:void(0);">斜挎包</a>
 							<a href="javascript:void(0);">钱包/手包</a>
-							<a href="javascript:void(0);">胸包</a>								
+							<a href="javascript:void(0);">胸包</a>
 						</dd>
 						<s></s>
 					</dl>
 					<div class="man" id="man">
 						<h5><span>品牌</span><a href="javascript:void(0);">更多男包品牌>></a></h5>
 						<div class="pic">
-							<a href="javascript:void(0);"><img src="../static/img/index/gb2.jpg"/>戈尔本</a>
+							<a href="javascript:void(0);"><img src="/static/img/index/gb2.jpg"/>戈尔本</a>
 						</div>
 						<div class="detail">
 							<dl>
@@ -193,8 +194,8 @@
 									<a href="javascript:void(0);">电脑包</a>
 									<a href="javascript:void(0);">休闲包</a>
 								</dd>
-							</dl>  
-							<dl> 
+							</dl>
+							<dl>
 								<dt><span>按价格：</span></dt>
 								<dd>
 									<a href="javascript:void(0);">199以下</a>
@@ -203,7 +204,7 @@
 									<a href="javascript:void(0);">600-999</a>
 									<a href="javascript:void(0);">1000以上</a>
 								</dd>
-							</dl>		
+							</dl>
 							<dl>
 								<dt><span>按主材质：</span></dt>
 								<dd>
@@ -239,19 +240,19 @@
 							<a href="javascript:void(0);">双肩包</a>
 							<a href="javascript:void(0);">拉杆箱</a>
 							<a href="javascript:void(0);">户外功能包</a>
-							<a href="javascript:void(0);">休闲包</a>								
+							<a href="javascript:void(0);">休闲包</a>
 						</dd>
 						<s></s>
 					</dl>
 					<div class="move" id="move">
 						<h5><span>品牌</span><a href="javascript:void(0);">更多运动包品牌>></a></h5>
 						<div class="pic">
-							<a href="javascript:void(0);"><img src="../static/img/index/sp2.jpg"/>希夏邦马</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/delsey.jpg"/>DELSEY</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/ego.jpg"/>Ego Products</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/rimowa.jpg"/>RIMOWA</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/xxl.jpg"/>Samsonite</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/jansport2.jpg"/>JanSport</a>
+							<a href="javascript:void(0);"><img src="/static/img/index/sp2.jpg"/>希夏邦马</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/delsey.jpg"/>DELSEY</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/ego.jpg"/>Ego Products</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/rimowa.jpg"/>RIMOWA</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/xxl.jpg"/>Samsonite</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/jansport2.jpg"/>JanSport</a>
 						</div>
 						<div class="detail">
 							<dl>
@@ -261,7 +262,7 @@
 									<a href="javascript:void(0);">旅行包</a>
 									<a href="javascript:void(0);">拉杆硬箱</a>
 								</dd>
-							</dl>  
+							</dl>
 							<dl style="border-bottom: 0;height: 84px;">
 								<dt><span>按价格：</span></dt>
 								<dd>
@@ -271,8 +272,8 @@
 									<a href="javascript:void(0);">600-999</a>
 									<a href="javascript:void(0);">1000以上</a>
 								</dd>
-							</dl>		
-							<dl style="border-bottom: 0;">     
+							</dl>
+							<dl style="border-bottom: 0;">
 								<dt><span>按主材质：</span></dt>
 								<dd>
 									<a href="javascript:void(0);">合成革</a>
@@ -300,13 +301,13 @@
 					<div class="other" id="other">
 						<h5><span>品牌</span><a href="javascript:void(0);">其他箱包>></a></h5>
 						<div class="pic">
-							<a href="javascript:void(0);"><img src="../static/img/index/littlelife.jpg"/>LITTLELIFE</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/travel-buddies.jpg"/>Travel buddies</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/winghouse.jpg"/>winghouse</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/thomas.jpg"/>托马斯&朋友</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/skiphop.jpg"/>Skip Hop</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/trunki.jpg"/>Trunki</a>
-							<a href="javascript:void(0);" style="border-left: 0;"><img src="../static/img/index/tu.jpg"/>TU</a>
+							<a href="javascript:void(0);"><img src="/static/img/index/littlelife.jpg"/>LITTLELIFE</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/travel-buddies.jpg"/>Travel buddies</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/winghouse.jpg"/>winghouse</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/thomas.jpg"/>托马斯&朋友</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/skiphop.jpg"/>Skip Hop</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/trunki.jpg"/>Trunki</a>
+							<a href="javascript:void(0);" style="border-left: 0;"><img src="/static/img/index/tu.jpg"/>TU</a>
 						</div>
 					</div>
 				</div>
@@ -335,8 +336,10 @@
 				<div class="form-c" id="form-c">
 					<div class="l-cont">
                         {% if num %}
-                            <p class="userexist">该用户以存在，是否进行 <a href="{% url 'mbb:login' %}">登录</a></p>
-
+{#                            <p class="userexist">该用户以存在，是否进行 <a href="{% url 'mbb:login' %}">登录</a></p>#}
+                            <script>
+                            alert('账号已存在')
+                            </script>
                         {% endif %}
 
 

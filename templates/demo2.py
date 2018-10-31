@@ -1,5 +1,5 @@
 
-a=open('index.html','r',encoding='utf8')
+a=open('register.html','r',encoding='utf8')
 b=a.read()
 # print(b)
 b=b.replace('src="..','src="')

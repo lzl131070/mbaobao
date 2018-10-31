@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mbbapp',
+    'mbbapp.apps.MbbappConfig',
     'tinymce',
 ]
 
@@ -145,3 +145,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'width':600,
     'height':400,
 }
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/upload')

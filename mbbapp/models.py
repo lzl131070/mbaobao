@@ -3,8 +3,9 @@ from tinymce.models import HTMLField
 # Create your models here.
 class User(models.Model):
     username=models.CharField(max_length=50,unique=True)
-    password=models.CharField(max_length=50)
-    token=models.CharField(max_length=256,default='')
+    password=models.CharField(max_length=255)
+    img=models.CharField(max_length=255,default='')
+    token=models.CharField(max_length=256,default='/static/img/index/head.jpeg')
 
 
 class Img(models.Model):

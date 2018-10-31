@@ -19,11 +19,11 @@ $(function(){
 		}
 		else if(checkPhone()){
 			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-			$("#reg-username + span").html("<img src='static/img/index/1.png' />");						
+			$("#reg-username + span").html("<img src='/static/img/index/1.png' />");
 		}
 		else{
 			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-			$("#reg-username + span").css("color","red").html("<img src='static/img/index/2.png' />手机号码格式错误，请重新填写");
+			$("#reg-username + span").css("color","red").html("<img src='/static/img/index/2.png' />手机号码格式错误，请重新填写");
 		}
 	})
 	//密码
@@ -38,11 +38,11 @@ $(function(){
 		}
 		else if(checkPwd()){
 			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-			$("#reg-password + span").html("<img src='static/img/index/1.png' />");						
+			$("#reg-password + span").html("<img src='/static/img/index/1.png' />");
 		}
 		else{
 			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-			$("#reg-password + span").css("color","red").html("<img src='static/img/index/2.png' />格式错误，请使用字母加数字或符号的组合，请使用6-20个字符");
+			$("#reg-password + span").css("color","red").html("<img src='/static/img/index/2.png' />格式错误，请使用字母加数字或符号的组合，请使用6-20个字符");
 		}
 	})
 	//重复密码
@@ -58,15 +58,15 @@ $(function(){
 		else if(checkPwdr()){
 			if($(this).val == $("#reg-password").val ){
 				$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-				$("#reg-password1 + span").html("<img src='static/img/index/1.png' />");
+				$("#reg-password1 + span").html("<img src='/static/img/index/1.png' />");
 			}else{
 				$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-				$("#reg-password1 + span").css("color","red").html("<img src='static/img/index/2.png' />两次密码输入不一致，请重新输入");
+				$("#reg-password1 + span").css("color","red").html("<img src='/static/img/index/2.png' />两次密码输入不一致，请重新输入");
 			}						
 		}
 		else{
 			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-			$("#reg-password1 + span").css("color","red").html("<img src='static/img/index/2.png' />两次密码输入不一致，请重新输入");
+			$("#reg-password1 + span").css("color","red").html("<img src='/static/img/index/2.png' />两次密码输入不一致，请重新输入");
 		}
 	})
 	//短信验证
@@ -81,11 +81,11 @@ $(function(){
 		}
 		else if(checkYzm()){
 			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-			$("#reg-tel-verifycode + span").html("<img src='static/img/index/1.png' />");						
+			$("#reg-tel-verifycode + span").html("<img src='/static/img/index/1.png' />");
 		}
 		else{
 			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
-			$("#reg-tel-verifycode + span").css("color","red").html("<img src='static/img/index/2.png' />错误，请确认验证码");
+			$("#reg-tel-verifycode + span").css("color","red").html("<img src='/static/img/index/2.png' />错误，请确认验证码");
 		}
 	})
 	//点击获取短信验证码
@@ -136,7 +136,7 @@ $(function(){
 	})
 	//点击注册
 	$("#reg-submit").click(function(){
-		if($("#reg-checkbox").is(":checked")==true && checkPhone() && checkPwd() && checkPwdr() && checkYzm()){
+		if($("#reg-checkbox").is(":checked")==true && checkPhone() && checkPwd() && checkPwdr()){
 //			alert("注册成功");	
 			var xhr = new XMLHttpRequest();
             xhr.open("post", "http://localhost/mbaobao/static/php/register.php", true);

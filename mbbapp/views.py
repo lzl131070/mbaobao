@@ -1,4 +1,5 @@
 import hashlib
+import os
 import random
 import time
 import uuid
@@ -8,6 +9,7 @@ from django.shortcuts import render, render_to_response, redirect
 
 # Create your views here.
 from mbbapp.models import User, Img, Detail
+from untitled import settings
 
 
 def index(request):
@@ -19,11 +21,13 @@ def index(request):
 
     if users.exists():
         user=users.first()
-        return render(request,'index.html',context={'username':user.username,'data':data,'detail':detail})
+        return render(request,'index.html',context={'user':user,'data':data,'detail':detail})
     else:
         return render(request,'index.html',context={'data':data,'detail':detail})
-def genertat_password():
-    pass
+def genertat_password(password):
+    sha = hashlib.sha512()
+    sha.update(password.encode('utf-8'))
+    return sha.hexdigest()
 def generate_token():
     token=str(time.time())+str(random.random)
     md5=hashlib.md5()
@@ -34,7 +38,7 @@ def login(request):
         return render(request, 'login.html')
     elif request.method=='POST':
         username=request.POST.get('username')
-        password=request.POST.get('password')
+        password=genertat_password(request.POST.get('password'))
         users=User.objects.filter(username=username)
         if users.count():
             users=User.objects.filter(username=username).filter(password=password)
@@ -63,7 +67,7 @@ def register(request):
     elif request.method=='POST':
         user=User()
         user.username=request.POST.get('username')
-        user.password=request.POST.get('password')
+        user.password=genertat_password(request.POST.get('password'))
         try:
             user.token=uuid.uuid5(uuid.uuid4(),'register')
             user.save()
@@ -94,3 +98,22 @@ def logout(request):
     response.delete_cookie('token')
     return response
 
+def uploadhead(request):
+    token = request.COOKIES.get('token')
+    user = User.objects.filter(token=token).first()
+    if request.method=='GET':
+        return render(request,'uploadhead.html',context={'user':user})
+    elif request.method=='POST':
+        file = request.FILES.get('heading')
+        filename = str(random.randrange(1,100)) + '-' + file.name
+        filepath = os.path.join(settings.MEDIA_ROOT,filename)
+        with open(filepath,'wb') as fp:
+            for item in file.chunks():
+                fp.write(item)
+
+        response = redirect('mbb:index')
+        a=filepath.split('untitled')
+        user.img=a[1]
+        user.save()
+        print(filename)
+        return response
