@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mbbapp',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,8 @@ STATICFILES_DIRS = [
 # SESSION_REDIS_HOST = '127.0.0.1'
 # SESSION_REDIS_PORT = '6379'
 # SESSION_REDIS_DB = 0
+TINYMCE_DEFAULT_CONFIG = {
+    'theme':'advanced',
+    'width':600,
+    'height':400,
+}

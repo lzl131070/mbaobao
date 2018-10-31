@@ -177,18 +177,18 @@ $(function(){
 	//全局变量， 用来保存获取到json中的所有商品数据
 	var arr = [];	
 	//先获取数据并创建节点，显示数据
-	$.get("http://127.0.0.1/mbaobao/static/php/index-detail.php", function(data){
-		//console.log(data);
-		arr = JSON.parse(data);		
-		//遍历json中的所有商品数据，并用节点显示
-		for (var i=0; i<arr.length; i++) {
-			var obj = arr[i];			
-			//创建li节点
-			var li = $("<li></li>").appendTo(".mod-pro-list ul");
-			$("<a href='javascript:void(0);' class='pic'><img src="+ obj.headImg +" title='"+ obj.name +"'></a>").appendTo(li);
-			$("<div class='info'><span><a href='javascript:void(0);' title='"+ obj.name +"'>"+ obj.name +"</a></span><span class='price'>"+obj.unit+obj.price+"<s>"+obj.unit+obj.mbbPrice+"</s></span></div>").appendTo(li);						
-		}		
-	})	
+	// $.get("http://127.0.0.1/mbaobao/static/php/index-detail.php", function(data){
+	// 	//console.log(data);
+	// 	arr = JSON.parse(data);
+	// 	//遍历json中的所有商品数据，并用节点显示
+	// 	for (var i=0; i<arr.length; i++) {
+	// 		var obj = arr[i];
+	// 		//创建li节点
+	// 		var li = $("<li></li>").appendTo(".mod-pro-list ul");
+	// 		$("<a href='javascript:void(0);' class='pic'><img src="+ obj.headImg +" title='"+ obj.name +"'></a>").appendTo(li);
+	// 		$("<div class='info'><span><a href='javascript:void(0);' title='"+ obj.name +"'>"+ obj.name +"</a></span><span class='price'>"+obj.unit+obj.price+"<s>"+obj.unit+obj.mbbPrice+"</s></span></div>").appendTo(li);
+	// 	}
+	// })
 	//点击商品
 	$(".mod-pro-list ul").on("click", "li", function(){
 		//console.log("click");

@@ -1,5 +1,5 @@
 from django.db import models
-
+from tinymce.models import HTMLField
 # Create your models here.
 class User(models.Model):
     username=models.CharField(max_length=50,unique=True)
@@ -45,3 +45,6 @@ class Detail(models.Model):
 
     def __str__(self):
         return self.name
+
+class Text(models.Model):
+    str=HTMLField()

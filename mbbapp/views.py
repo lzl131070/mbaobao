@@ -22,6 +22,8 @@ def index(request):
         return render(request,'index.html',context={'username':user.username,'data':data,'detail':detail})
     else:
         return render(request,'index.html',context={'data':data,'detail':detail})
+def genertat_password():
+    pass
 def generate_token():
     token=str(time.time())+str(random.random)
     md5=hashlib.md5()
