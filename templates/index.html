@@ -25,7 +25,7 @@
 	<div class="warp">
 		<div class="top-left">
             <a href="javascript:void(0);"style="margin-right: 5px;"></a>您好，欢迎来到麦包包！
-            {% if user.username %}<img src="{{ user.img }}" id="headimg"/><a href="{% url 'mbb:uploadhead' %}">【{{ user.username }}  </a>| <a href="{% url 'mbb:logout' %}">退出</a>
+            {% if user.username %}<img src="{{ user.img }}" id="headimg" style="height: 100%"/ ><a href="{% url 'mbb:uploadhead' %}">【{{ user.username }}  </a>| <a href="{% url 'mbb:logout' %}">退出</a>
             {% else %}<img src="/static/img/index/head.jpeg" id="headimg"/>【<a href="{% url 'mbb:login' %}">登录 </a>| <a href="{% url 'mbb:register' %}">注册</a>
             {% endif %}】
         </div>

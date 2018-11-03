@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -5,14 +6,14 @@
 	<title>我的购物车-麦包包</title>
 	<link rel="stylesheet" type="text/css" href="../static/css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="../static/css/cart.css"/>
-	<script src="../static/js/jquery-1.12.3.js"></script>
-	<script src="../static/js/jquery.cookie.js"></script>
-	<script src="../static/js/cart-jq.js"></script>
+	<script src="/static/js/jquery-1.12.3.js"></script>
+	<script src="/static/js/jquery.cookie.js"></script>
+	<script src="/static/js/cart-jq.js"></script>
 	</head>
 	<body>
 		<div class="cart-top">
 			<div class="cart-warp">
-				<a href="{% url 'mbb:index' %}" class="cart-logo"><img src="../static/img/index/logo.png"/></a>
+				<a href="{% url 'mbb:index' %}" class="cart-logo"><img src="/static/img/index/logo.png"/></a>
 				<div class="cart-title">
 					<h1>购物车</h1>
 					<div class="login-bar">您好，欢迎来到麦包包！</div>
@@ -143,7 +144,7 @@
 				<li><a href="javascript:void(0);" class="chat"><i></i><span>在线咨询</span></a></li>
 				<li><a href="{% url 'mbb:cart' %}" class="gocart"><i></i><span>去购物车</span></a></li>
 				<li><a href="javascript:void(0);" class="qrcode">
-					<div class="qrcode-hover-show"><img src="../static/img/index/ewm_02.png"/></div>
+					<div class="qrcode-hover-show"><img src="/static/img/index/ewm_02.png"/></div>
 					<i></i><span>二维码</span></a>
 				</li>
 			</ul>

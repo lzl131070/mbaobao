@@ -6,7 +6,8 @@ class User(models.Model):
     password=models.CharField(max_length=255)
     img=models.CharField(max_length=255,default='')
     token=models.CharField(max_length=256,default='/static/img/index/head.jpeg')
-
+    def __str__(self):
+        return self.username
 
 class Img(models.Model):
     num=models.CharField(max_length=20)
