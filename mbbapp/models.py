@@ -50,3 +50,9 @@ class Detail(models.Model):
 
 class Text(models.Model):
     str=HTMLField()
+
+
+class Usercart(models.Model):
+    username=models.CharField(max_length=200)
+    goodnum = models.CharField(max_length=200)
+    num = models.CharField(max_length=200)

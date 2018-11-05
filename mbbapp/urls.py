@@ -7,9 +7,10 @@ urlpatterns = [
     url('^$',views.index,name='index'),
     url('^login/$',views.login,name='login'),
     url('^register/$', views.register, name='register'),
-    url(r'^cart/$',views.cart,name='cart'),
+    url(r'^cart/$', views.cart, name='cart'),
     url(r'^list/$',views.list,name='list'),
     url(r'^detail/(\d+)/$',views.detail,name='detail'),
     url(r'^logout$',views.logout,name='logout'),
     url(r'^uploadhead/$',views.uploadhead,name='uploadhead'),
+    url(r'^delgc/$',views.delgc)
 ]

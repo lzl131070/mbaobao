@@ -13,9 +13,17 @@
 		<script type="text/javascript" src="../static/js/jquery.simplePagination.js"></script>
 	</head>
 	<body>
+     <style>
+    #headimg{
+        width: 20px;
+        border-radius: 50%;
+    }
+</style>
 		<div class="top">
 			<div class="top-warp list-warp">
-				<div class="top-left">您好，欢迎来到麦包包！ 【 <a href="{% url 'mbb:login' %}">登录 </a>| <a href="{% url 'mbb:register' %}">注册</a> 】</div>
+				<div class="top-left">您好，欢迎来到麦包包！  {% if user.username %}<img src="{{ user.img }}" id="headimg" style="height: 100%"/ ><a href="{% url 'mbb:uploadhead' %}">【{{ user.username }}  </a>| <a href="{% url 'mbb:logout' %}">退出</a>
+            {% else %}<img src="/static/img/index/head.jpeg" id="headimg"/>【<a href="{% url 'mbb:login' %}">登录 </a>| <a href="{% url 'mbb:register' %}">注册</a>
+            {% endif %}】</div>
 				<div class="top-right">
 					<ul>
 						<li class="my-order"><a href="javascript:void(0);">我的订单</a></li>

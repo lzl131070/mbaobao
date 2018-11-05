@@ -9,8 +9,21 @@
 	<script src="/static/js/jquery-1.12.3.js"></script>
 	<script src="/static/js/jquery.cookie.js"></script>
 	<script src="/static/js/cart-jq.js"></script>
+        <style>
+            .goods-list thead tr td{
+                text-align: center;
+            }
+            .goods-list thead tr td span{
+                height: 30px;
+                width: 30px;
+                font-size: 30px;
+                margin: 5px;
+                cursor: pointer;
+            }
+        </style>
 	</head>
 	<body>
+
 		<div class="cart-top">
 			<div class="cart-warp">
 				<a href="{% url 'mbb:index' %}" class="cart-logo"><img src="/static/img/index/logo.png"/></a>
@@ -48,12 +61,25 @@
 									<th width="110">小计</th>
 									<th width="50">操作</th>
 								</tr>
+                            {% if good %}
+                            <tr>
+                            <td class="goods-list-td1"><img src="{{ good.heading }}"></td>
+                            <td class="goods-list-td2">{{ good.name }}</td>
+                            <td class="goods-list-td3">{{ good.price }}</td>
+                            <td class="goods-list-td4">{{ thenum }}</td>
+                            <td class="goods-list-td5"></td>
+                            <td class="goods-list-td6"><span>-</span><span>+</span></td>
+                            </tr>
+                            {% endif %}
 							</thead>
 							<tbody>
 							</tbody>
-						</table>						
-						<div class="cart-pick-other">  您还没有挑选商品，赶快行动吧！<a href="{% url 'mbb:index' %}">马上去挑选商品>></a></div>
-					</div>
+						</table>
+                        {% if good %}
+                    <div class="cart-pick-other"> </div>
+
+				{% else %}<div class="cart-pick-other">  您还没有挑选商品，赶快行动吧！<a href="{% url 'mbb:index' %}">马上去挑选商品>></a></div>
+				{% endif %}	</div>
 					<form action="" method="post">
 						<div class="list-footer-info">
 							<div class="sale-pane">
@@ -93,6 +119,7 @@
 										<tr>
 											<th>商品总金额(不含运费)：</th>
 											<td id="countprices">￥0.00</td>
+
 										</tr>
 										<tr>
 											<th>麦豆抵扣：</th>
@@ -112,6 +139,7 @@
 												<div class="total-price">应付金额：<strong id="zgprice">￥0.00</strong></div>
 											</th>
 										</tr>
+
 									</tbody>
 								</table>
 							</div>

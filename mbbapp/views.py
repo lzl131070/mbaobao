@@ -13,12 +13,12 @@ from untitled import settings
 
 
 def index(request):
-    token=request.COOKIES.get('token')
-    users = User.objects.filter(token=token)
+
+    detail = Detail.objects.all()
     data=Img.objects.all()
 
-    detail=Detail.objects.all()
-
+    token = request.COOKIES.get('token')
+    users = User.objects.filter(token=token)
     if users.exists():
         user=users.first()
         return render(request,'index.html',context={'user':user,'data':data,'detail':detail})
@@ -44,7 +44,7 @@ def login(request):
             users=User.objects.filter(username=username).filter(password=password)
             if users.count():
                 user=users.first()
-                user.token=generate_token()
+                user.token=generate_token()  #刷新token 保证安全性
                 user.save()
 
                 response=redirect('mbb:index')
@@ -62,12 +62,16 @@ def login(request):
             return render(request,'login.html',context={'num':num})
 
 def register(request):
+    token = request.COOKIES.get('token')
+    user = User.objects.filter(token=token).first()
     if request.method=='GET':
-        return render(request,'register.html')
+
+        return render(request,'register.html',context={'user':user})
     elif request.method=='POST':
         user=User()
         user.username=request.POST.get('username')
         user.password=genertat_password(request.POST.get('password'))
+        user.img = '/static/img/index/head.jpeg'
         try:
             user.token=uuid.uuid5(uuid.uuid4(),'register')
             user.save()
@@ -79,20 +83,38 @@ def register(request):
         except:
 
             num=1
-            return render(request,'register.html',context={'num':num})
+            return render(request,'register.html',context={'num':num,'user':user})
 def cart(request):
+    token = request.COOKIES.get('token')
+    user = User.objects.filter(token=token).first()
+    goodnum = request.COOKIES.get('good')
+    print(goodnum)
+    try:
+        good = Detail.objects.get(num=goodnum)
+        print(1)
+        thenum = request.COOKIES.get('num')
+        return render(request,'cart.html',context={'user':user,'good':good,'thenum':thenum})
+    except:
+        print(2)
+    # if goodnum!='0':
+    #     good = Detail.objects.get(num=goodnum)
+    #
+    #     return render(request,'cart.html',context={'user':user,'good':good})
 
-    return render(request,'cart.html')
-
+    return render(request, 'cart.html', context={'user': user})
 
 def list(request):
-    return render(request,'list.html')
+    token = request.COOKIES.get('token')
+    user = User.objects.filter(token=token).first()
+    return render(request,'list.html',context={'user':user})
 
 
 def detail(request,num):
+    token = request.COOKIES.get('token')
+    user = User.objects.filter(token=token).first()
     good=Detail.objects.all()[int(num)-1]
 
-    return render(request,'detail.html',context={'good':good})
+    return render(request,'detail.html',context={'good':good,'user':user})
 def logout(request):
     response=redirect('mbb:index')
     response.delete_cookie('token')
@@ -117,3 +139,10 @@ def uploadhead(request):
         user.save()
         print(filename)
         return response
+
+def delgc(request):
+    response=redirect('mbb:index')
+    response.delete_cookie('good')
+    return response
+
+

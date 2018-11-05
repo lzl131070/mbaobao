@@ -59,9 +59,9 @@ $(function(){
 		//刷新节点数据
 		refresh();
 	})
-	
+	$('tbody').mouseleave
 	//-
-	$("tbody").on("click", ".reduce", function(){
+	$("tbody").on("click", ".reduce",function(){
 		var index = $(this).index("tbody .reduce");
 		
 		//获取cookie并修改
@@ -111,8 +111,42 @@ $(function(){
 		refresh();
 		
 	})
+	var price=$('.goods-list thead tr td').eq(2).html()
+	var nub=$('.goods-list thead tr td').eq(3).html()
+	var moeny=price*nub
+	$('.goods-list thead tr td').eq(4).html(moeny)
+	$('#countsnub').html($('.goods-list-td4').html()+'件')
+	$('tr .total-price').html('￥'+$('.goods-list-td4').html()*$('.goods-list-td3').html())
+	$('#countprices').html('￥'+$('.goods-list-td4').html()*$('.goods-list-td3').html())
+	$('.goods-list thead tr .goods-list-td6 span').eq(0).click(function () {
+		var a = $(this).parent().prev().prev().html()
+		a--
+		$('#countsnub').html(a+'件')
 
+		if (a!=0){
+$(this).parent().prev().prev().html(a)
+					$(this).parent().prev().html(a*$(this).parent().prev().prev().prev().html())
+		$.cookie('num',a,{expires:3,path:'/'})
+				$('tr .total-price').html('￥'+a*$(this).parent().prev().prev().prev().html())
+		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
+		}
+		else {
+			$(this).parent().parent().remove()
+			$.cookie('good','',{expires:-1,path:'/'})
+			$.cookie('num','',{expires:-1,path:'/'})
 
+		}
+    })
 
-	
+	$('.goods-list thead tr .goods-list-td6 span').eq(1).click(function () {
+		var a = $(this).parent().prev().prev().html()
+		a++
+		$(this).parent().prev().prev().html(a)
+		$.cookie('num',a,{expires:3,path:'/'})
+		$('#countsnub').html(a+'件')
+		$('tr .total-price').html('￥'+a*$(this).parent().prev().prev().prev().html())
+		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
+		$(this).parent().prev().html(a*$(this).parent().prev().prev().prev().html())
+    })
+
 })

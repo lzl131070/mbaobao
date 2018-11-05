@@ -128,7 +128,7 @@ $(function(){
 	//
 	// 	})
 	// }
-	//
+	// //
 	
 	
 	//查找参数对应的值
@@ -145,19 +145,24 @@ $(function(){
 	}
 	
 	
-	
-	var num1 = 0;		
-	var arr3 = JSON.parse($.cookie("cart"));
-	for(var j=0;j<arr3.length;j++){
-		var obj1 = arr3[j];
-		num1 += obj1.num;
-	}
-	$(".down em").html(num1);
-	
-	
+	//
+	// var num1 = 0;
+	// // var arr3 = JSON.parse($.cookie("cart"));
+	// for(var j=0;j<arr3.length;j++){
+	// 	var obj1 = arr3[j];
+	// 	num1 += obj1.num;
+	// }
+	// $(".down em").html(num1);
 	
 	
-	
+$('.goods-btn-buy').click(function () {
+
+	$.cookie('good',$('#good_num').html(),{exprires:3,path:'/'})
+	// console.log()
+	// alert(	$.cookie('good')
+	$.cookie('num',1,{expires:3,path:'/'})
+
+})
 	
 	
 	
