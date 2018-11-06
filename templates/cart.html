@@ -61,25 +61,30 @@
 									<th width="110">小计</th>
 									<th width="50">操作</th>
 								</tr>
-                            {% if good %}
+
+
+                            {% for good in goods %}
                             <tr>
+
                             <td class="goods-list-td1"><img src="{{ good.heading }}"></td>
                             <td class="goods-list-td2">{{ good.name }}</td>
                             <td class="goods-list-td3">{{ good.price }}</td>
-                            <td class="goods-list-td4">{{ thenum }}</td>
+                            <td class="goods-list-td4">{{ good.goodnum }}</td>
                             <td class="goods-list-td5"></td>
-                            <td class="goods-list-td6"><span>-</span><span>+</span></td>
+                            <td class="goods-list-td6"><span class="reducegood">-</span><span class="addgood">+</span></td>
+                            <td class="numid" style="position: absolute;left: 0;right:0;z-index: -1;">{{ good.num }}</td>
                             </tr>
-                            {% endif %}
+                            {% endfor %}
 							</thead>
 							<tbody>
 							</tbody>
 						</table>
-                        {% if good %}
-                    <div class="cart-pick-other"> </div>
+{% if good %}
+             <div class="cart-pick-other"> </div>
 
-				{% else %}<div class="cart-pick-other">  您还没有挑选商品，赶快行动吧！<a href="{% url 'mbb:index' %}">马上去挑选商品>></a></div>
-				{% endif %}	</div>
+		{% else %}		<div class="cart-pick-other">  您还没有挑选商品，赶快行动吧！<a href="{% url 'mbb:index' %}">马上去挑选商品>></a></div>
+
+        {% endif %}            </div>
 					<form action="" method="post">
 						<div class="list-footer-info">
 							<div class="sale-pane">

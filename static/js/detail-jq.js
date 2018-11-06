@@ -157,10 +157,20 @@ $(function(){
 	
 $('.goods-btn-buy').click(function () {
 
-	$.cookie('good',$('#good_num').html(),{exprires:3,path:'/'})
-	// console.log()
-	// alert(	$.cookie('good')
-	$.cookie('num',1,{expires:3,path:'/'})
+	// $.cookie('good',$('#good_num').html(),{exprires:3,path:'/'})
+	// $.cookie('num',1,{expires:3,path:'/'})
+
+	$.cookie('good'+$('#good_num').html(),$('#good_num').html(),{exprires:3,path:'/'})
+    if($.cookie('num'+$('#good_num').html())){
+        var a=$.cookie('num'+$('#good_num').html())
+        a = parseInt(a)
+        $.cookie('num'+$('#good_num').html(),a+1,{expires:3,path:'/'})
+    }
+    else {
+        $.cookie('num'+$('#good_num').html(),1,{expires:3,path:'/'})
+    }
+
+
 
 })
 	

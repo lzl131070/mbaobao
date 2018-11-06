@@ -87,21 +87,38 @@ def register(request):
 def cart(request):
     token = request.COOKIES.get('token')
     user = User.objects.filter(token=token).first()
-    goodnum = request.COOKIES.get('good')
-    print(goodnum)
-    try:
-        good = Detail.objects.get(num=goodnum)
-        print(1)
-        thenum = request.COOKIES.get('num')
-        return render(request,'cart.html',context={'user':user,'good':good,'thenum':thenum})
-    except:
-        print(2)
+    # goodnum = request.COOKIES.get('good')
+    # print(goodnum)
+    # try:
+    #     good = Detail.objects.get(num=goodnum)
+    #     print(1)
+    #     thenum = request.COOKIES.get('num')
+    #     return render(request,'cart.html',context={'user':user,'good':good,'thenum':thenum})
+    # except:
+    #     pass
+    cart_num=[]
+    cart_good=[]
+    for good in Detail.objects.all():
+        try:
+            goodnum = good.num
+            goodcookeis = request.COOKIES.get('good'+str(goodnum))
+
+            numcookeis = request.COOKIES.get('num'+str(goodnum))
+            if numcookeis and goodcookeis:
+                good.goodnum=numcookeis
+                cart_good.append(good)
+
+                cart_num.append(numcookeis)
+
+        except:
+            pass
+
     # if goodnum!='0':
     #     good = Detail.objects.get(num=goodnum)
     #
     #     return render(request,'cart.html',context={'user':user,'good':good})
 
-    return render(request, 'cart.html', context={'user': user})
+    return render(request, 'cart.html', context={'user': user,'goods':cart_good,'cartnum':cart_num})
 
 def list(request):
     token = request.COOKIES.get('token')

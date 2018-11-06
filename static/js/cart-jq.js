@@ -81,36 +81,36 @@ $(function(){
 	
 	
 	//删除
-	$("tbody").on("click", ".del-goods", function(){
-		var index = $(this).index();
-		
-		//获取cookie并修改
-		var arr = JSON.parse($.cookie("cart"));
-		arr.splice(index, 1); //删除数组arr的第index个
-		
-		//覆盖原来的cookie
-		$.cookie("cart", JSON.stringify(arr), {expires:30, path:"/"});
-		
-		$(this).parents('tr').remove();
-		var tr_length = $('.goods-list tbody tr').size();
-		if(tr_length == 0){
-			$(".cart-pick-other").show();
-		}
-		var totalPrice =0;
-		var num = 0;
-		for(var i=0;i<arr.length;i++){
-			var obj = arr[i];
-		totalPrice += obj.price * obj.num;
-		num += obj.num;
-		}
-		
-		$("#countprices").html("￥" + totalPrice.toFixed(2));
-		$("#zgprice").html("￥" + totalPrice.toFixed(2));
-		$("#countsnub").html(num +"件");
-		//刷新节点数据
-		refresh();
-		
-	})
+	// $("tbody").on("click", ".del-goods", function(){
+	// 	var index = $(this).index();
+	//
+	// 	//获取cookie并修改
+	// 	var arr = JSON.parse($.cookie("cart"));
+	// 	arr.splice(index, 1); //删除数组arr的第index个
+	//
+	// 	//覆盖原来的cookie
+	// 	$.cookie("cart", JSON.stringify(arr), {expires:30, path:"/"});
+	//
+	// 	$(this).parents('tr').remove();
+	// 	var tr_length = $('.goods-list tbody tr').size();
+	// 	if(tr_length == 0){
+	// 		$(".cart-pick-other").show();
+	// 	}
+	// 	var totalPrice =0;
+	// 	var num = 0;
+	// 	for(var i=0;i<arr.length;i++){
+	// 		var obj = arr[i];
+	// 	totalPrice += obj.price * obj.num;
+	// 	num += obj.num;
+	// 	}
+	//
+	// 	$("#countprices").html("￥" + totalPrice.toFixed(2));
+	// 	$("#zgprice").html("￥" + totalPrice.toFixed(2));
+	// 	$("#countsnub").html(num +"件");
+	// 	//刷新节点数据
+	// 	refresh();
+	//
+	// })
 	var price=$('.goods-list thead tr td').eq(2).html()
 	var nub=$('.goods-list thead tr td').eq(3).html()
 	var moeny=price*nub
@@ -118,7 +118,7 @@ $(function(){
 	$('#countsnub').html($('.goods-list-td4').html()+'件')
 	$('tr .total-price').html('￥'+$('.goods-list-td4').html()*$('.goods-list-td3').html())
 	$('#countprices').html('￥'+$('.goods-list-td4').html()*$('.goods-list-td3').html())
-	$('.goods-list thead tr .goods-list-td6 span').eq(0).click(function () {
+	$('.goods-list thead tr .goods-list-td6 .reducegood').click(function () {
 		var a = $(this).parent().prev().prev().html()
 		a--
 		$('#countsnub').html(a+'件')
@@ -126,23 +126,27 @@ $(function(){
 		if (a!=0){
 $(this).parent().prev().prev().html(a)
 					$(this).parent().prev().html(a*$(this).parent().prev().prev().prev().html())
-		$.cookie('num',a,{expires:3,path:'/'})
+
+		$.cookie('num'+$(this).parent().next().html(),a,{expires:3,path:'/'})
 				$('tr .total-price').html('￥'+a*$(this).parent().prev().prev().prev().html())
 		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
+
 		}
 		else {
 			$(this).parent().parent().remove()
-			$.cookie('good','',{expires:-1,path:'/'})
-			$.cookie('num','',{expires:-1,path:'/'})
+			$.cookie('good'+$(this).parent().next().html(),'',{expires:-1,path:'/'})
+			$.cookie('num'+$(this).parent().next().html(),'',{expires:-1,path:'/'})
+			// $('.cart-pick-other').html('您还没有挑选商品，赶快行动吧！<a href="{% url \'mbb:index\' %}">马上去挑选商品>></a>')
 
 		}
     })
 
-	$('.goods-list thead tr .goods-list-td6 span').eq(1).click(function () {
+	$('.goods-list thead tr .goods-list-td6 .addgood').click(function () {
+	    console.log($(this).parent().next().html())
 		var a = $(this).parent().prev().prev().html()
 		a++
 		$(this).parent().prev().prev().html(a)
-		$.cookie('num',a,{expires:3,path:'/'})
+		$.cookie('num'+$(this).parent().next().html(),a,{expires:3,path:'/'})   //
 		$('#countsnub').html(a+'件')
 		$('tr .total-price').html('￥'+a*$(this).parent().prev().prev().prev().html())
 		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
