@@ -18,8 +18,18 @@ $(function(){
 			$("#reg-username + span").html("");			
 		}
 		else if(checkPhone()){
-			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});
+			var $that=$(this)
+			$.get('/checknum/',{'num':$that.val()},function (response) {
+				if (response.status==1){
+					$that.css({border:"1px solid #e1e1e1",boxShadow:""});
 			$("#reg-username + span").html("<img src='/static/img/index/1.png' />");
+				}
+				else if(response.status==-1){
+					$that.css({border:"1px solid #e1e1e1",boxShadow:""});
+			$("#reg-username + span").css("color","red").html("<img src='/static/img/index/2.png' />账号已存在，请重新填写");
+				}
+            })
+
 		}
 		else{
 			$(this).css({border:"1px solid #e1e1e1",boxShadow:""});

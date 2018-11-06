@@ -75,18 +75,15 @@ def register(request):
         user.username=request.POST.get('username')
         user.password=genertat_password(request.POST.get('password'))
         user.img = '/static/img/index/head.jpeg'
-        try:
-            user.token=uuid.uuid5(uuid.uuid4(),'register')
-            user.save()
-            request.session['username']=user.username
-            response=redirect('mbb:index')
 
-            response.set_cookie('token',user.token)
-            return response
-        except:
+        user.token=uuid.uuid5(uuid.uuid4(),'register')
+        user.save()
+        request.session['username']=user.username
+        response=redirect('mbb:index')
 
-            num=1
-            return render(request,'register.html',context={'num':num,'user':user})
+        response.set_cookie('token',user.token)
+        return response
+
 def cart(request):
     token = request.COOKIES.get('token')
     if token:
@@ -205,3 +202,16 @@ def reduce(request):
     cart.save()
 
     return JsonResponse(jsonData)
+
+
+def checknum(request):
+    num = request.GET.get('num')
+    users = User.objects.filter(username=num)
+    data={
+
+    }
+    if users.exists():
+        data['status']=-1
+    else:
+        data['status']=1
+    return JsonResponse(data)

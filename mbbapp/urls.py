@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^logout$',views.logout,name='logout'),
     url(r'^uploadhead/$',views.uploadhead,name='uploadhead'),
     url(r'^buy/$',views.buy,name='buy'),
-    url(r'^reduce/$',views.reduce,name='reduece')
+    url(r'^reduce/$',views.reduce,name='reduece'),
+    url(r'^checknum/$',views.checknum,name='checknum'),
 
 ]
