@@ -1,4 +1,5 @@
 $(function(){
+	// $.cookie('html','',{expires: -1,path:'/'})
 	$("#menu-m,#menu-c").hover(function(){
 			$("#menu-c").show();
 		},
@@ -153,44 +154,42 @@ $(function(){
 	// 	num1 += obj1.num;
 	// }
 	// $(".down em").html(num1);
-	
+  $('.goods-btn-collect').click(function () {
+	  addcart()
+  })
 	
 $('.goods-btn-buy').click(function () {
 
-	// $.cookie('good',$('#good_num').html(),{exprires:3,path:'/'})
-	// $.cookie('num',1,{expires:3,path:'/'})
-
-	$.cookie('good'+$('#good_num').html(),$('#good_num').html(),{exprires:3,path:'/'})
-    if($.cookie('num'+$('#good_num').html())){
-        var a=$.cookie('num'+$('#good_num').html())
-        a = parseInt(a)
-        $.cookie('num'+$('#good_num').html(),a+1,{expires:3,path:'/'})
-    }
-    else {
-        $.cookie('num'+$('#good_num').html(),1,{expires:3,path:'/'})
-    }
-
-
+	//无ajax购物车
+	// $.cookie('good'+$('#good_num').html(),$('#good_num').html(),{exprires:3,path:'/'})
+    // if($.cookie('num'+$('#good_num').html())){
+    //     var a=$.cookie('num'+$('#good_num').html())
+    //     a = parseInt(a)
+    //     $.cookie('num'+$('#good_num').html(),a+1,{expires:3,path:'/'})
+    // }
+    // else {
+    //     $.cookie('num'+$('#good_num').html(),1,{expires:3,path:'/'})
+    // }
+	addcart()
 
 })
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+function addcart() {
+    var goodid = $('#good_num').html()
+	$.get('/buy/',{'goodid':goodid},function (response) {
+console.log(response)
+        if(response.status==-1){
+            window.open('/login/',target='_self')
+        }
+    })
+
+
+}
+
+
+
+
 	
 	
 	

@@ -51,8 +51,9 @@ class Detail(models.Model):
 class Text(models.Model):
     str=HTMLField()
 
-#
-# class Usercart(models.Model):
-#     username=models.CharField(max_length=200)
-#     goodnum = models.CharField(max_length=200)
-#     num = models.CharField(max_length=200)
+
+class Cart(models.Model):
+    user=models.ForeignKey(User)
+    good = models.ForeignKey(Detail)
+    num = models.IntegerField()
+    isselect = models.BooleanField(default=True)

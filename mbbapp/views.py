@@ -4,11 +4,11 @@ import random
 import time
 import uuid
 
-from django.http import HttpResponse,response,HttpRequest
+from django.http import HttpResponse, response, HttpRequest, JsonResponse
 from django.shortcuts import render, render_to_response, redirect
 
 # Create your views here.
-from mbbapp.models import User, Img, Detail
+from mbbapp.models import User, Img, Detail, Cart
 from untitled import settings
 
 
@@ -34,6 +34,9 @@ def generate_token():
     md5.update(token.encode('utf-8'))
     return md5.hexdigest()
 def login(request):
+    # html=request.COOKIES.get('html')
+    # html = html[:3]+':'+html[3:]
+
     if request.method=='GET':
         return render(request, 'login.html')
     elif request.method=='POST':
@@ -86,39 +89,34 @@ def register(request):
             return render(request,'register.html',context={'num':num,'user':user})
 def cart(request):
     token = request.COOKIES.get('token')
-    user = User.objects.filter(token=token).first()
-    # goodnum = request.COOKIES.get('good')
-    # print(goodnum)
-    # try:
-    #     good = Detail.objects.get(num=goodnum)
-    #     print(1)
-    #     thenum = request.COOKIES.get('num')
-    #     return render(request,'cart.html',context={'user':user,'good':good,'thenum':thenum})
-    # except:
-    #     pass
-    cart_num=[]
-    cart_good=[]
-    for good in Detail.objects.all():
-        try:
-            goodnum = good.num
-            goodcookeis = request.COOKIES.get('good'+str(goodnum))
-
-            numcookeis = request.COOKIES.get('num'+str(goodnum))
-            if numcookeis and goodcookeis:
-                good.goodnum=numcookeis
-                cart_good.append(good)
-
-                cart_num.append(numcookeis)
-
-        except:
-            pass
-
-    # if goodnum!='0':
-    #     good = Detail.objects.get(num=goodnum)
+    if token:
+        user = User.objects.get(token=token)
+    else:
+        return render(request,'login.html')
+   # 非ajax
+    # cart_num=[]
+    # cart_good=[]
+    # for good in Detail.objects.all():
+    #     try:
+    #         goodnum = good.num
+    #         goodcookeis = request.COOKIES.get('good'+str(goodnum))
     #
-    #     return render(request,'cart.html',context={'user':user,'good':good})
+    #         numcookeis = request.COOKIES.get('num'+str(goodnum))
+    #         if numcookeis and goodcookeis:
+    #             good.goodnum=numcookeis
+    #             cart_good.append(good)
+    #
+    #             cart_num.append(numcookeis)
+    #
+    #     except:
+    #         pass
+    #
+    # return render(request, 'cart.html', context={'user': user,'goods':cart_good,'cartnum':cart_num})
 
-    return render(request, 'cart.html', context={'user': user,'goods':cart_good,'cartnum':cart_num})
+    #
+    #ajax
+    carts = Cart.objects.filter(user=user).exclude(num=0)
+    return render(request,'cart.html',context={'carts':carts})
 
 def list(request):
     token = request.COOKIES.get('token')
@@ -157,9 +155,53 @@ def uploadhead(request):
         print(filename)
         return response
 
-def delgc(request):
-    response=redirect('mbb:index')
-    response.delete_cookie('good')
-    return response
 
+def buy(request):
+    token = request.COOKIES.get('token')
 
+    if token:
+
+        goodid=request.GET.get('goodid')
+        jsonData = {
+            'goodid':goodid,
+            'status':1,
+        }
+        good = Detail.objects.get(num=goodid)
+
+        user = User.objects.get(token=token)
+        carts = Cart.objects.filter(user=user).filter(good=good)
+        if carts.exists():
+            cart = carts.first()
+            cart.num +=1
+            cart.save()
+        else:
+            cart = Cart()
+            cart.num = 1
+            cart.user = user
+            cart.good = good
+            cart.save()
+
+        return JsonResponse(jsonData)
+    else:
+        jsonData={
+            'status':-1
+        }
+        return JsonResponse(jsonData)
+
+def reduce(request):
+    token = request.COOKIES.get('token')
+
+    goodid = request.GET.get('goodid')
+    jsonData = {
+        'goodid': goodid,
+    }
+    good = Detail.objects.get(num=goodid)
+
+    user = User.objects.get(token=token)
+    carts = Cart.objects.filter(user=user).filter(good=good)
+
+    cart = carts.first()
+    cart.num -= 1
+    cart.save()
+
+    return JsonResponse(jsonData)

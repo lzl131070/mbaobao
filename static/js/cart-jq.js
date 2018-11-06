@@ -111,46 +111,91 @@ $(function(){
 	// 	refresh();
 	//
 	// })
-	var price=$('.goods-list thead tr td').eq(2).html()
-	var nub=$('.goods-list thead tr td').eq(3).html()
-	var moeny=price*nub
-	$('.goods-list thead tr td').eq(4).html(moeny)
-	$('#countsnub').html($('.goods-list-td4').html()+'件')
-	$('tr .total-price').html('￥'+$('.goods-list-td4').html()*$('.goods-list-td3').html())
-	$('#countprices').html('￥'+$('.goods-list-td4').html()*$('.goods-list-td3').html())
-	$('.goods-list thead tr .goods-list-td6 .reducegood').click(function () {
-		var a = $(this).parent().prev().prev().html()
-		a--
-		$('#countsnub').html(a+'件')
+	// var price=$('.goods-list thead tr td').eq(2).html()
+	// var nub=$('.goods-list thead tr td').eq(3).html()
+	// var moeny=price*nub
+	//
 
-		if (a!=0){
-$(this).parent().prev().prev().html(a)
-					$(this).parent().prev().html(a*$(this).parent().prev().prev().prev().html())
 
-		$.cookie('num'+$(this).parent().next().html(),a,{expires:3,path:'/'})
-				$('tr .total-price').html('￥'+a*$(this).parent().prev().prev().prev().html())
-		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
+if ($('.goods-list-td4').length>0){
+	$('.cart-pick-other').hide()
+}
 
-		}
-		else {
-			$(this).parent().parent().remove()
-			$.cookie('good'+$(this).parent().next().html(),'',{expires:-1,path:'/'})
-			$.cookie('num'+$(this).parent().next().html(),'',{expires:-1,path:'/'})
-			// $('.cart-pick-other').html('您还没有挑选商品，赶快行动吧！<a href="{% url \'mbb:index\' %}">马上去挑选商品>></a>')
-
-		}
+	// var num=0;
+	// var goodprice=0;
+	$('.goods-list thead tr .goods-list-td5').each(function () {
+		$(this).html($(this).prev().prev().html()*$(this).prev().html())
     })
 
-	$('.goods-list thead tr .goods-list-td6 .addgood').click(function () {
-	    console.log($(this).parent().next().html())
-		var a = $(this).parent().prev().prev().html()
-		a++
-		$(this).parent().prev().prev().html(a)
-		$.cookie('num'+$(this).parent().next().html(),a,{expires:3,path:'/'})   //
-		$('#countsnub').html(a+'件')
-		$('tr .total-price').html('￥'+a*$(this).parent().prev().prev().prev().html())
-		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
-		$(this).parent().prev().html(a*$(this).parent().prev().prev().prev().html())
+
+	// $('#countsnub').html($('.goods-list-td4').html()+'件')
+	// $('tr .total-price').html('￥'+$('.goods-list-td4').html()*$('.goods-list-td3').html())
+	// $('#countprices').html('￥'+$('.goods-list-td4').html()*$('.goods-list-td3').html())
+//// 无ajax实现购物车
+// 	$('.goods-list thead tr .goods-list-td6 .reducegood').click(function () {
+// 		var a = $(this).parent().prev().prev().html()
+// 		a--
+// 		$('#countsnub').html(a+'件')
+//
+// 		if (a!=0){
+// $(this).parent().prev().prev().html(a)
+// 					$(this).parent().prev().html(a*$(this).parent().prev().prev().prev().html())
+//
+// 		$.cookie('num'+$(this).parent().next().html(),a,{expires:3,path:'/'})
+// 				$('tr .total-price').html('￥'+a*$(this).parent().prev().prev().prev().html())
+// 		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
+//
+// 		}
+// 		else {
+// 			$(this).parent().parent().remove()
+// 			$.cookie('good'+$(this).parent().next().html(),'',{expires:-1,path:'/'})
+// 			$.cookie('num'+$(this).parent().next().html(),'',{expires:-1,path:'/'})
+// 			// $('.cart-pick-other').html('您还没有挑选商品，赶快行动吧！<a href="{% url \'mbb:index\' %}">马上去挑选商品>></a>')
+//
+// 		}
+//     })
+//
+// 	$('.goods-list thead tr .goods-list-td6 .addgood').click(function () {
+// 	    console.log($(this).parent().next().html())
+// 		var a = $(this).parent().prev().prev().html()
+// 		a++
+// 		$(this).parent().prev().prev().html(a)
+// 		$.cookie('num'+$(this).parent().next().html(),a,{expires:3,path:'/'})   //
+// 		$('#countsnub').html(a+'件')
+// 		$('tr .total-price').html('￥'+a*$(this).parent().prev().prev().prev().html())
+// 		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
+// 		$(this).parent().prev().html(a*$(this).parent().prev().prev().prev().html())
+//     })
+		$('.goods-list thead tr .goods-list-td6 .addgood').click(function () {
+			var goodid = $(this).attr('isid')
+			var a=$(this).parent().prev().prev().html()
+			a++
+			$(this).parent().prev().prev().html(a)
+			$(this).parent().prev().html($(this).parent().prev().prev().html()*$(this).parent().prev().prev().prev().html())
+		$.get('/buy/',{'goodid':goodid,'num':1},function (response) {
+			console.log(response)
     })
+        })
+
+		$('.goods-list thead tr .goods-list-td6 .reducegood').click(function () {
+			var goodid = $(this).attr('isid')
+			var a=$(this).parent().prev().prev().html()
+			a--
+			$(this).parent().prev().prev().html(a)
+			if(a==0){
+				$(this).parent().parent().remove()
+				if($('.goods-list-td4').length==0){
+					 $('.cart-pick-other').show()
+
+
+				}
+			}
+			$(this).parent().prev().html($(this).parent().prev().prev().html()*$(this).parent().prev().prev().prev().html())
+			$.get('/reduce/',{'goodid':goodid},function (response) {
+
+			console.log(response)
+    })
+        })
+
 
 })

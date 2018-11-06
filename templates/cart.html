@@ -54,37 +54,36 @@
 						<table class="goods-list">
 							<thead>
 								<tr>
-									<th width="100"></th>
-									<th width="*" style="text-indent: 80px; text-align: left;">商品名称</th>
-									<th width="90">单价</th>
-									<th width="120">数量</th>
-									<th width="110">小计</th>
-									<th width="50">操作</th>
+						{# 1	 #}		<th width="100"></th>
+                        {# 2	 #}		<th width="*" style="text-indent: 80px; text-align: left;">商品名称</th>
+                        {# 3	 #}		<th width="90">单价</th>
+                        {# 4	 #}		<th width="120">数量</th>
+                        {# 5	 #}		<th width="110">小计</th>
+                        {# 6	 #}		<th width="50">操作</th>
 								</tr>
 
 
-                            {% for good in goods %}
+                            {% for cart in carts %}
                             <tr>
 
-                            <td class="goods-list-td1"><img src="{{ good.heading }}"></td>
-                            <td class="goods-list-td2">{{ good.name }}</td>
-                            <td class="goods-list-td3">{{ good.price }}</td>
-                            <td class="goods-list-td4">{{ good.goodnum }}</td>
+                            <td class="goods-list-td1"><img src="{{ cart.good.heading }}"></td>
+                            <td class="goods-list-td2">{{ cart.good.name }}</td>
+                            <td class="goods-list-td3">{{ cart.good.price }}</td>
+                            <td class="goods-list-td4">{{ cart.num }}</td>
                             <td class="goods-list-td5"></td>
-                            <td class="goods-list-td6"><span class="reducegood">-</span><span class="addgood">+</span></td>
-                            <td class="numid" style="position: absolute;left: 0;right:0;z-index: -1;">{{ good.num }}</td>
+                            <td class="goods-list-td6"><span class="reducegood" isid="{{ cart.good.num }}">-</span><span class="addgood"  isid="{{ cart.good.num }}">+</span></td>
+{#                            <td class="numid" style="position: absolute;left: 0;right:0;z-index: -1;">{{ cart.num }}</td>#}
                             </tr>
                             {% endfor %}
 							</thead>
 							<tbody>
 							</tbody>
 						</table>
-{% if good %}
-             <div class="cart-pick-other"> </div>
 
-		{% else %}		<div class="cart-pick-other">  您还没有挑选商品，赶快行动吧！<a href="{% url 'mbb:index' %}">马上去挑选商品>></a></div>
 
-        {% endif %}            </div>
+				<div class="cart-pick-other">  您还没有挑选商品，赶快行动吧！<a href="{% url 'mbb:index' %}">马上去挑选商品>></a></div>
+
+                    </div>
 					<form action="" method="post">
 						<div class="list-footer-info">
 							<div class="sale-pane">

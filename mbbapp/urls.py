@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^detail/(\d+)/$',views.detail,name='detail'),
     url(r'^logout$',views.logout,name='logout'),
     url(r'^uploadhead/$',views.uploadhead,name='uploadhead'),
-    url(r'^delgc/$',views.delgc)
+    url(r'^buy/$',views.buy,name='buy'),
+    url(r'^reduce/$',views.reduce,name='reduece')
+
 ]
