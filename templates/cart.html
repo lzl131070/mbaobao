@@ -4,11 +4,12 @@
 	<head>
 		<meta charset="UTF-8">
 	<title>我的购物车-麦包包</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/reset.css"/>
-	<link rel="stylesheet" type="text/css" href="../static/css/cart.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/cart.css"/>
 	<script src="/static/js/jquery-1.12.3.js"></script>
 	<script src="/static/js/jquery.cookie.js"></script>
 	<script src="/static/js/cart-jq.js"></script>
+
         <style>
             .goods-list thead tr td{
                 text-align: center;
@@ -54,7 +55,8 @@
 						<table class="goods-list">
 							<thead>
 								<tr>
-						{# 1	 #}		<th width="100"></th>
+
+						{# 1	 #}		<th width="100" style="text-align: left"><div class="no" style="float: left" isselect="false">√</div><div style="float: left;line-height: 20px;">全选</div></th>
                         {# 2	 #}		<th width="*" style="text-indent: 80px; text-align: left;">商品名称</th>
                         {# 3	 #}		<th width="90">单价</th>
                         {# 4	 #}		<th width="120">数量</th>
@@ -63,20 +65,20 @@
 								</tr>
 
 
-                            {% for cart in carts %}
-                            <tr>
+							</thead>
+							<tbody>
 
-                            <td class="goods-list-td1"><img src="{{ cart.good.heading }}"></td>
+                            {% for cart in carts %}
+                            <tr class="quantity">
+                            <td class="goods-list-td1" style="position: relative;"><div class="no" isselect="{{ cart.isselect }}" isid="{{ cart.id }}">√ </div><img src="{{ cart.good.heading }}"></td>
                             <td class="goods-list-td2">{{ cart.good.name }}</td>
                             <td class="goods-list-td3">{{ cart.good.price }}</td>
                             <td class="goods-list-td4">{{ cart.num }}</td>
-                            <td class="goods-list-td5"></td>
-                            <td class="goods-list-td6"><span class="reducegood" isid="{{ cart.good.num }}">-</span><span class="addgood"  isid="{{ cart.good.num }}">+</span></td>
+                            <td class="goods-list-td5 price1"></td>
+                            <td class="goods-list-td6"><span class="reducegood" isid="{{ cart.good.num }}">-</span>  &nbsp;&nbsp;<span class="addgood"  isid="{{ cart.good.num }}">+</span></td>
 {#                            <td class="numid" style="position: absolute;left: 0;right:0;z-index: -1;">{{ cart.num }}</td>#}
                             </tr>
                             {% endfor %}
-							</thead>
-							<tbody>
 							</tbody>
 						</table>
 

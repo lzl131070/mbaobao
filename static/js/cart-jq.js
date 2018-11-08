@@ -117,14 +117,87 @@ $(function(){
 	//
 
 
+function goodprice() {
+	var price = 0;
+	$('.goods-list-td5').each(function () {
+		if($(this).prev().prev().prev().prev().find('.no').attr('isselect')=='true'){
+					price+=parseInt($(this).html())
+}
+
+    })
+	$('#countprices').html('￥'+price)
+	$('#zgprice').html('￥'+price)
+}
+$('.no').each(function () {
+	if ($(this).attr('isselect')=='True'){
+		$(this).addClass('ok')
+		$(this).attr('isselect','true')
+	}else{
+		$(this).removeClass('ok')
+	}
+})
+
+
+	if ($('td .ok').length==$('.goods-list-td4').length){
+				$('th .no').addClass('ok').attr('isselect','true')
+			}else {
+				$('th .no').removeClass('ok').attr('isselect','false')
+			}
+
+function goodnum() {
+		var num = 0
+	$('.goods-list-td4').each(function () {
+		if($(this).prev().prev().prev().find('.no').attr('isselect')=='true'){
+					num += parseInt($(this).html())
+
+}
+    })
+	$("#countsnub").html(num+'件')
+}
+
 if ($('.goods-list-td4').length>0){
 	$('.cart-pick-other').hide()
 }
 
+
+
+//选择操作
+$('td .no').click(function () {
+	var isid = $(this).attr('isid')
+	var $that = $(this)
+	console.log(isid)
+	$.get('/checkone/',{'isid':isid},function (response) {
+		if(response.status==1){
+			var isselect = response.isselect
+
+			// if (isselect=='False'){
+			// 	isselect=true
+			// }
+			$that.attr('isselect',isselect)
+			// console.log($that.attr('isselect'))
+			// console.log(typeof($that.attr('isselect')))
+			if (isselect){
+				$that.addClass('ok')
+			} else {
+				$that.removeClass('ok')
+			}
+			if ($('td .ok').length==$('.goods-list-td4').length){
+				$('th .no').addClass('ok').attr('isselect','true')
+
+			}else {
+				$('th .no').removeClass('ok').attr('isselect','false')
+			}
+			goodprice()
+			goodnum()
+		}
+    })
+
+})
 	// var num=0;
 	// var goodprice=0;
-	$('.goods-list thead tr .goods-list-td5').each(function () {
+	$('.goods-list tbody tr .goods-list-td5').each(function () {
 		$(this).html($(this).prev().prev().html()*$(this).prev().html())
+		console.log($(this).html($(this).prev().prev().html()*$(this).prev().html()))
     })
 
 
@@ -166,18 +239,23 @@ if ($('.goods-list-td4').length>0){
 // 		$('#countprices').html('￥'+a*$(this).parent().prev().prev().prev().html())
 // 		$(this).parent().prev().html(a*$(this).parent().prev().prev().prev().html())
 //     })
-		$('.goods-list thead tr .goods-list-td6 .addgood').click(function () {
+
+	//增加操作
+		$('.goods-list tbody tr .goods-list-td6 .addgood').click(function () {
 			var goodid = $(this).attr('isid')
 			var a=$(this).parent().prev().prev().html()
 			a++
 			$(this).parent().prev().prev().html(a)
 			$(this).parent().prev().html($(this).parent().prev().prev().html()*$(this).parent().prev().prev().prev().html())
+			goodnum()
+			goodprice()
 		$.get('/buy/',{'goodid':goodid,'num':1},function (response) {
 			console.log(response)
     })
         })
 
-		$('.goods-list thead tr .goods-list-td6 .reducegood').click(function () {
+	//减少操作
+		$('.goods-list tbody tr .goods-list-td6 .reducegood').click(function () {
 			var goodid = $(this).attr('isid')
 			var a=$(this).parent().prev().prev().html()
 			a--
@@ -195,7 +273,29 @@ if ($('.goods-list-td4').length>0){
 
 			console.log(response)
     })
+			goodnum()
+			goodprice()
         })
+	$('th .no').click(function () {
+			var isselect = $(this).attr('isselect')
+			var $that=$(this)
+		$.get('/checkall/',{'isselect':isselect},function (response) {
+			if (response.status==1){
+				if (response.isselect=='true'){
+					$that.attr('isselect','true').addClass('ok')
+					$('td .no').attr('isselect','true').removeClass('ok').addClass('ok')
 
+				}else {
+					$that.attr('isselect','false').removeClass('ok')
+					$('td .no').attr('isselect','false').removeClass('ok')
+
+				}
+			goodprice()
+			goodnum()
+			}
+        })
+    })
+	goodnum()
+	goodprice()
 
 })

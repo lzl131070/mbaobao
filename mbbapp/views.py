@@ -203,7 +203,7 @@ def reduce(request):
 
     return JsonResponse(jsonData)
 
-
+# 验证注册账号
 def checknum(request):
     num = request.GET.get('num')
     users = User.objects.filter(username=num)
@@ -214,4 +214,43 @@ def checknum(request):
         data['status']=-1
     else:
         data['status']=1
+    return JsonResponse(data)
+
+
+def checkone(request):
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    isid = request.GET.get('isid')
+    cart = Cart.objects.get(pk=isid,user=user)
+
+    cart.isselect = not cart.isselect
+    cart.save()
+    data={
+        'status':1,
+        'isselect':cart.isselect,
+
+    }
+    return JsonResponse(data)
+
+
+def checkall(request):
+    isselect = request.GET.get('isselect')
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    carts = Cart.objects.filter(user=user)
+    if isselect=='false':
+        isselect='true'
+        for cart in carts:
+            cart.isselect=True
+            cart.save()
+    else:
+        isselect='false'
+        for cart in carts:
+            cart.isselect=False
+            cart.save()
+
+    data={
+        'status':1,
+        'isselect':isselect,
+    }
     return JsonResponse(data)

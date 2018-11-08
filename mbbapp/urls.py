@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^buy/$',views.buy,name='buy'),
     url(r'^reduce/$',views.reduce,name='reduece'),
     url(r'^checknum/$',views.checknum,name='checknum'),
-
+    url(r'^checkone/$',views.checkone,name='checkone'),
+    url(r'^checkall/$',views.checkall,name='checkall'),
 ]

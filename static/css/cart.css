@@ -85,3 +85,8 @@
 .fd-side li .qrcode:hover i{background-position: -69px -35px;}
 .fd-side li .qrcode:hover .qrcode-hover-show{display: block;}
 .fd-side li .qrcode .qrcode-hover-show{position: absolute; top: -190px;left: -236px;display: none;}
+.goods-list-td6 span{cursor: pointer;font-size: 20px;}
+.no{width: 15px;height: 15px;border: 1px solid gray;border-radius: 50%;color: white;font-weight: 900;cursor: pointer}
+td .no{align-content: center;position: absolute;left: 0;top: 45%;color: white;}
+
+.ok{background: red;}
