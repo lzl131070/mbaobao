@@ -146,3 +146,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'height':400,
 }
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/upload')
+
+
+ALIPAY_ROOT = os.path.join(BASE_DIR, 'static/key')

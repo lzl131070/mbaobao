@@ -89,4 +89,4 @@
 .no{width: 15px;height: 15px;border: 1px solid gray;border-radius: 50%;color: white;font-weight: 900;cursor: pointer}
 td .no{align-content: center;position: absolute;left: 0;top: 45%;color: white;}
 
-.ok{background: red;}
+.ok{background: yellow;}

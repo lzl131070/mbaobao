@@ -11,7 +11,7 @@
 	<script src="/static/js/cart-jq.js"></script>
 
         <style>
-            .goods-list thead tr td{
+            .goods-list tbody tr td{
                 text-align: center;
             }
             .goods-list thead tr td span{
@@ -43,6 +43,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="container-bg-warp">
 			<div class="container-warp">
 				<div class="cart-notice">
@@ -50,6 +51,7 @@
 					<p>加入购物车的商品无法为您保留库存，请及时下单购买，商品价格以订单提交时的价格为准。</p>
 					<i class="arrow-b-l"></i>
 				</div>
+
 				<div class="cart-main">
 					<div id="js-goods-container">
 						<table class="goods-list">
@@ -150,7 +152,7 @@
 								</table>
 							</div>
 							<div class="bottom-btns">
-								<a href="javascript:void(0);" class="go-checkout"></a>
+								<a href="{% url 'mbb:adv' %}" class="go-checkout"></a>
 							</div>
 						</div>
 					</form>

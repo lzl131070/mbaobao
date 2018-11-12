@@ -8,7 +8,8 @@ from django.http import HttpResponse, response, HttpRequest, JsonResponse
 from django.shortcuts import render, render_to_response, redirect
 
 # Create your views here.
-from mbbapp.models import User, Img, Detail, Cart
+from mbbapp.alipay import alipay_mbb
+from mbbapp.models import User, Img, Detail, Cart, Order, OrderDetail
 from untitled import settings
 
 
@@ -170,12 +171,14 @@ def buy(request):
         if carts.exists():
             cart = carts.first()
             cart.num +=1
+            cart.isselect = True
             cart.save()
         else:
             cart = Cart()
             cart.num = 1
             cart.user = user
             cart.good = good
+            cart.isselect = True
             cart.save()
 
         return JsonResponse(jsonData)
@@ -187,14 +190,14 @@ def buy(request):
 
 def reduce(request):
     token = request.COOKIES.get('token')
-
+    user = User.objects.get(token=token)
     goodid = request.GET.get('goodid')
     jsonData = {
         'goodid': goodid,
     }
     good = Detail.objects.get(num=goodid)
 
-    user = User.objects.get(token=token)
+
     carts = Cart.objects.filter(user=user).filter(good=good)
 
     cart = carts.first()
@@ -254,3 +257,109 @@ def checkall(request):
         'isselect':isselect,
     }
     return JsonResponse(data)
+
+
+def adv(request):
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    carts = Cart.objects.filter(user=user).filter(isselect=True)
+
+    return render(request,'adv.html')
+
+
+def order(request):
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    sheng = request.GET.get('sheng')
+    shi = request.GET.get('shi')
+    xian = request.GET.get('xian')
+    detail = request.GET.get('detail')
+    adv = sheng+'#'+shi+'#'+xian+'#'+detail
+    print(adv)
+    order = Order()
+    order.user=user
+    order.adv=adv
+    order.ordernum=str(time.time())+str(random.randrange(10000000,99999999))
+    order.save()
+    carts = Cart.objects.filter(user=user,isselect=True)
+
+
+    for cart in carts:
+        orderdetail = OrderDetail()
+        orderdetail.ordernum = order
+        orderdetail.num=cart.num
+        orderdetail.good=cart.good
+        orderdetail.save()
+        cart.delete()
+    return JsonResponse({'status':1})
+
+
+def orderdetail(request):
+    token = request.COOKIES.get('token')
+    try:
+        user = User.objects.get(token=token)
+        orders = Order.objects.filter(user=user)
+        return render(request,'myorder.html',context={'orders':orders})
+    except:
+        return render(request,'login.html')
+
+def getorder(request):
+
+    isid = request.GET.get('isid')
+    # isid = int(isid)
+    order = Order.objects.get(pk=isid)
+    orderdetails = OrderDetail.objects.filter(ordernum=order)
+    listgood=[]
+    for orderdetail in orderdetails:
+        good = orderdetail.good
+        num = orderdetail.num
+        img = good.heading
+        price = good.price
+        name = good.name
+        list=[name,img,price,num]
+        listgood.append(list)
+    return JsonResponse({'status':1,'listgood':listgood})
+
+def notifyurl(request):
+    print(' xxx  订单支付成功，请发货')
+    print(request.GET.get('subject'))
+    return JsonResponse({'msg':'success'})
+
+
+def returnurl(request):
+    num = request.COOKIES.get('num')
+    order = Order.objects.get(ordernum=num)
+    order.status=1
+    order.save()
+    print('xxx 订单支付成功，进行页面跳转')
+
+    return HttpResponse('进行页面跳转，回到mbb.....')
+
+def pay(request):
+    num = request.GET.get('num')
+    response = redirect('mbb:returnurl')
+    response.set_cookie('num',num)
+
+    print(num)
+    # 支付url
+    url = alipay_mbb.direct_pay(
+        subject='测试订单 --- iphone X',
+        out_trade_no=num,
+        total_amount=9.9,  # 付款金额
+        return_url='http://39.105.175.192:7000/returnurl/'
+    )
+
+    alipay_url = 'https://openapi.alipaydev.com/gateway.do?{data}'.format(data=url)
+
+    return JsonResponse({'alipay_url': alipay_url})
+def concer(request):
+    isid = request.GET.get('isid')
+    # isid = int(isid)
+    print(isid)
+    order = Order.objects.get(pk=isid)
+    orderdetails = OrderDetail.objects.filter(ordernum=order)
+    for i in orderdetails:
+
+        i.delete()
+    order.delete()
+    return JsonResponse({'status':1})

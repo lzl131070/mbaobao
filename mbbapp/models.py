@@ -57,3 +57,18 @@ class Cart(models.Model):
     good = models.ForeignKey(Detail)
     num = models.IntegerField()
     isselect = models.BooleanField(default=True)
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User)
+    ordernum=models.CharField(max_length=255)
+    adv = models.CharField(max_length=255)
+    status=models.IntegerField(default=0)
+
+
+
+class OrderDetail(models.Model):
+    ordernum=models.ForeignKey(Order)
+    good = models.ForeignKey(Detail)
+    num = models.CharField(max_length=255)
+

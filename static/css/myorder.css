@@ -1,0 +1,13 @@
+.showgood{
+    width: 100%;
+    height: 50px;
+}
+.showgood span{
+    display: inline-block;
+    height: 100%;
+    margin-right:30px;
+    float: left;
+}
+.showgood span img{
+    height: 100%;
+}

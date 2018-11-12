@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	<title>我的购物车-麦包包</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/cart.css"/>
+	<script src="/static/js/jquery-1.12.3.js"></script>
+	<script src="/static/js/jquery.cookie.js"></script>
+	<script src="/static/js/cart-jq.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/myorder.css"/>
+        <script src="/static/js/myorder.js"></script>
+        <link rel="stylesheet" href="/static/css/adv.css">
+        <script src="/static/js/adv.js"></script>
+        <style>
+            .goods-list tbody tr td{
+                text-align: center;
+            }
+            .goods-list thead tr td span{
+                height: 30px;
+                width: 30px;
+                font-size: 30px;
+                margin: 5px;
+                cursor: pointer;
+            }
+        </style>
+	</head>
+	<body>
+
+		<div class="cart-top">
+			<div class="cart-warp">
+				<a href="{% url 'mbb:index' %}" class="cart-logo"><img src="/static/img/index/logo.png"/></a>
+				<div class="cart-title">
+					<h1>购物车</h1>
+					<div class="login-bar">您好，欢迎来到麦包包！</div>
+				</div>
+				<div class="cart-step">
+					<div class="cart-step-icon"></div>
+					<ul>
+						<li><em class="red">1.确认采购商品</em></li>
+						<li>2.填写收货信息</li>
+						<li>3.支付</li>
+						<li>4.支付成功</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-bg-warp">
+			<div class="container-warp">
+				<div class="cart-notice">
+					<strong>温馨提示：</strong>
+					<p>加入购物车的商品无法为您保留库存，请及时下单购买，商品价格以订单提交时的价格为准。</p>
+					<i class="arrow-b-l"></i>
+				</div>
+
+                <div class="cart-main">
+
+
+                    <div id="js-goods-container">
+                    <table border="1" cellspacing="0">
+
+                    <tr>
+                        <td width="500">订单号</td>
+                        <td width="100">订单状态</td>
+                        <td width="400">操作</td>
+                 </tr>
+                        {% for order in orders %}
+                            <tr>
+                            <td>{{ order.ordernum }}</td>
+                                {% if order.status == 0 %}
+                                     <td>未支付</td>
+                                    <td isid="{{ order.id }}"><input type="button" value="取消订单" class="concer">&nbsp;<input type="button" value="支付" class="pay"  num="{{ order.ordernum }}"><input
+                                            type="button" value="查看商品" class="detail"></td>
+                                {% endif %}
+                                {% if order.status == 1 %}
+
+                                     <td>待发货</td>
+                                    <td isid="{{ order.id }}"><input type="button" value="申请退货" class="tuihuo">&nbsp;<input type="button" value="提醒商家发货"><input
+                                            type="button" value="查看商品" class="detail"></td>
+                                {% endif %}
+                                {% if order.status == 2 %}
+
+                                     <td>待收货</td>
+                                    <td isid="{{ order.id }}"><input type="button" value="申请退货" class="tuihuo">&nbsp;<input type="button" value='查看物流' class="cat">&nbsp;<input type="button" value='确认收货' class="reap"><input
+                                            type="button" value="查看商品" class="detail"></td>
+                                {% endif %}
+                                {% if order.status == 3 %}
+
+                                     <td>待评价</td>
+                                    <td isid="{{ order.id }}"><input type="button" value="取消订单" class="concer">&nbsp;<input type="button" value="评价" class="eva"><input
+                                            type="button" value="查看商品" class="detail"></td>
+                                {% endif %}
+                            {% if order.status == 4 %}
+                              <td>已完成交易</td>
+                                    <td isid="{{ order.id }}"><input type="button" value="售后/退货" class="hind">&nbsp;<input type="button" value="查看交易信息" class="eva"><input
+                                            type="button" value="查看商品" class="detail"></td>
+                                {% endif %}
+
+                            </tr>
+                        {% endfor %}
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-warp">
+				<div class="special-service">
+					<ul>
+						<li><a href="javascript:void(0);" class="spe-ser-1"></a></li>
+						<li><a href="javascript:void(0);" class="spe-ser-2"></a></li>
+						<li><a href="javascript:void(0);" class="spe-ser-3"></a></li>
+						<li><a href="javascript:void(0);" class="spe-ser-4"></a></li>
+						<li><a href="javascript:void(0);" class="spe-ser-5"></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					©2007-2012 Mbaobao All Rights Reserved. 嘉兴市麦宝科技信息有限公司 版权所有，禁止非法复制 <a href="javascript:void(0);" class="gray">经营许可证编号：浙B2-20100425</a>
+				</div>
+			</div>
+		</div>
+		<div class="fd-side">
+			<ul>
+				<li><a href="javascript:void(0);" class="chat"><i></i><span>在线咨询</span></a></li>
+				<li><a href="{% url 'mbb:cart' %}" class="gocart"><i></i><span>去购物车</span></a></li>
+				<li><a href="javascript:void(0);" class="qrcode">
+					<div class="qrcode-hover-show"><img src="/static/img/index/ewm_02.png"/></div>
+					<i></i><span>二维码</span></a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -26,7 +26,7 @@
             {% endif %}】</div>
 				<div class="top-right">
 					<ul>
-						<li class="my-order"><a href="javascript:void(0);">我的订单</a></li>
+						<li class="my-order"><a href="{% url 'mbb:orderdetail' %}">我的订单</a></li>
 						<li class="my-cart" id="my-cart"><a href="{% url 'mbb:cart' %}" class="down"><i class="icon icon-l"></i>购物车<em>0</em><b class="arrow"></b></a>
 							<div class="cart-x" id="cart-x">您的购物车中还没有商品，先去选购吧！</div>
 						</li>

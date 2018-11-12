@@ -17,4 +17,12 @@ urlpatterns = [
     url(r'^checknum/$',views.checknum,name='checknum'),
     url(r'^checkone/$',views.checkone,name='checkone'),
     url(r'^checkall/$',views.checkall,name='checkall'),
+    url(r'^adv/$',views.adv,name='adv'),
+    url(r'^order/$',views.order,name='order'),
+    url(r'^orderdetail/$',views.orderdetail,name='orderdetail'),
+    url(r'^getorder/$',views.getorder,name='getorder'),
+    url(r'^concer/$',views.concer,name='concer'),
+    url(r'^pay/$',views.pay,name='pay'),
+    url(r'^notifyurl/$',views.notifyurl,name='notifyurl'),
+    url(r'^returnurl/$',views.returnurl,name='returnurl'),
 ]
