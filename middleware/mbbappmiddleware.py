@@ -14,4 +14,5 @@ class Mymiddle(MiddlewareMixin):
             time.sleep(5)
 
         ipd[request.META['REMOTE_ADDR']] = t
+
 ipd = {}

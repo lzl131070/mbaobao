@@ -124,8 +124,8 @@ class AliPay(object):
 
 # 初始化操作
 appid = '2016091900550370'
-app_notify_url = 'http://39.105.175.192:7000/notifyurl/' # 支付完成后，支付宝调用的(通知AXF服务端)
-return_url = 'http://39.105.175.192:7000/returnurl/' # 支付完成后，AXF客户端跳转的页面
+app_notify_url = 'http://http://127.0.0.1:8000/notifyurl/' # 支付完成后，支付宝调用的(通知AXF服务端)
+return_url = 'http://http://127.0.0.1:8000/returnurl/' # 支付完成后，AXF客户端跳转的页面
 app_private_key_path = os.path.join(ALIPAY_ROOT, 'mbb_si_yao.txt')    # AXF私钥
 alipay_public_key_path = os.path.join(ALIPAY_ROOT, 'alipay_gong_yao.txt')   # 支付宝公钥
 

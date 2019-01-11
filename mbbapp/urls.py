@@ -25,4 +25,6 @@ urlpatterns = [
     url(r'^pay/$',views.pay,name='pay'),
     url(r'^notifyurl/$',views.notifyurl,name='notifyurl'),
     url(r'^returnurl/$',views.returnurl,name='returnurl'),
+    url(r'^select/$',views.select,name='select'),
+    url(r'^selectprice/$',views.selectprice,name='selectprice'),
 ]

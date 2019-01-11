@@ -346,7 +346,7 @@ def pay(request):
         subject='测试订单 --- iphone X',
         out_trade_no=num,
         total_amount=9.9,  # 付款金额
-        return_url='http://39.105.175.192:7000/returnurl/'
+        return_url='http://http://127.0.0.1:8000/returnurl/'
     )
 
     alipay_url = 'https://openapi.alipaydev.com/gateway.do?{data}'.format(data=url)
@@ -363,3 +363,48 @@ def concer(request):
         i.delete()
     order.delete()
     return JsonResponse({'status':1})
+
+
+def select(request):
+    detail = Detail.objects.all()
+    if request.method == 'GET':
+        return render(request,'select.html',context={'detail':detail})
+
+    elif request.method == 'POST':
+        pass
+
+def selectprice(request):
+    less=request.GET.get('less')
+    mast = request.GET.get('mast')
+    lesslen = len(less)
+    mastlen = len(mast)
+
+    if lesslen > 0:
+       try:
+           less = float(less)
+
+       except:
+           return JsonResponse({"msg":0})
+    else:
+        less = 0
+    if mastlen > 0:
+        try:
+            mast = float(mast)
+
+        except:
+            return JsonResponse({"msg": 0})
+    else:
+        mast = float('inf')
+    if less > mast:
+        return JsonResponse({"msg": 0})
+    detail = Detail.objects.all()
+
+    goods = []
+    for good in detail:
+
+        if less<float(good.price)<mast:
+
+            goods.append({'img':good.heading,'name':good.name,'price':good.price,'mbbprice':good.mbbprice})
+
+    return JsonResponse({'msg':1,'goods':goods})
+
