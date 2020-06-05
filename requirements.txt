@@ -5,7 +5,7 @@ cffi==1.11.5
 chardet==3.0.4
 crypto==1.4.1
 cryptography==2.3.1
-Django==1.11.4
+Django==1.11.29
 django-redis==4.9.0
 django-tinymce==2.7.0
 Django-tinymce-filebrowser==0.2.1
