@@ -12,7 +12,7 @@ Django-tinymce-filebrowser==0.2.1
 flake8==3.6.0
 idna==2.7
 img==2.5
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.0
 mccabe==0.6.1
 Naked==0.1.31
