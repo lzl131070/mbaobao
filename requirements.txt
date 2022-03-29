@@ -16,7 +16,7 @@ Jinja2==2.10
 MarkupSafe==1.1.0
 mccabe==0.6.1
 Naked==0.1.31
-paramiko==2.4.2
+paramiko==2.10.1
 Pillow==5.3.0
 publickey==0.3
 pyasn1==0.4.4
